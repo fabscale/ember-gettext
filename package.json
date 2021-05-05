@@ -1,0 +1,29 @@
+{
+  "name": "ember-po-l10n",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/parser",
+    "packages/ember-l10n"
+  ],
+  "scripts": {
+    "lint:js": "eslint . --cache"
+  },
+  "devDependencies": {
+    "babel-eslint": "~10.1.0",
+    "eslint": "~7.24.0",
+    "eslint-config-prettier": "~8.1.0",
+    "eslint-plugin-node": "~11.1.0",
+    "eslint-plugin-prettier": "~3.4.0",
+    "prettier": "~2.2.1"
+  },
+  "engines": {
+    "node": ">= 14"
+  },
+  "volta": {
+    "node": "14.16.1",
+    "yarn": "1.22.10"
+  }
+}
