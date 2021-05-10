@@ -5,7 +5,7 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/fabscale/ember-gettext/packages/ember-l10n",
   "license": "MIT",
   "author": "Francesco Novy <francesco@fabscale.com>",
   "directories": {

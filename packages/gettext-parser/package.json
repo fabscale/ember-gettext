@@ -5,9 +5,9 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/fabscale/ember-gettext/packages/gettext-parser",
   "license": "MIT",
-  "author": "",
+  "author": "Francesco Novy <francesco@fabscale.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -44,7 +44,5 @@
   "ember": {
     "edition": "octane"
   },
-  "ember-addon": {
-    "configPath": "tests/dummy/config"
-  }
+  "ember-addon": {}
 }

@@ -1,6 +1,7 @@
 {
   "license": "MIT",
   "private": true,
+  "repository": "https://github.com/fabscale/ember-gettext",
   "workspaces": [
     "packages/gettext-parser",
     "packages/ember-l10n"
