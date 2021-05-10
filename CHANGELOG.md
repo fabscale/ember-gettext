@@ -1,3 +1,12 @@
+## v0.2.2 (2021-05-10)
+
+#### :bug: Bug Fix
+* `ember-l10n`, `gettext-parser`
+  * [#6](https://github.com/fabscale/ember-gettext/pull/6) fix: Ensure translation files are created if they do not exist ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.2.1 (2021-05-10)
 
 #### :rocket: Enhancement
