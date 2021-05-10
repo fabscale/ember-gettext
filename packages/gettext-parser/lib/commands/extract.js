@@ -235,6 +235,7 @@ async function generatePoFile(
     locale,
   });
 
+  await fs.ensureFile(targetFileName);
   await fs.writeFile(targetFileName, poContent, 'utf-8');
 
   ui.writeLine(chalk.green.bold(`\nUpdated ${targetFileName} ✔`));
