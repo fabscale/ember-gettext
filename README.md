@@ -40,12 +40,27 @@ ember gettext:convert --locale=de
 
 Use `@ember-gettext/ember-l10n` to translate messages in your Ember app.
 
-See  [ember-l10n README](./packages/ember-l10n/README.md) for details.
+See [ember-l10n README](./packages/ember-l10n/README.md) for details.
 
 ### Installation
 
 ```bash
 ember install @ember-gettext/ember-l10n
+```
+
+### Configuration
+
+You configure ember-l10n in your `environment.js` file like this:
+
+```js
+// config/environment.js
+let ENV = {
+  // ...
+  '@ember-gettext/ember-l10n': {
+    locales: ['en', 'de', 'ko'],
+    defaultLocale: 'en',
+  },
+};
 ```
 
 ### Usage
@@ -57,9 +72,9 @@ ember install @ember-gettext/ember-l10n
   {{t 'Hello {{name}}' name=@userName}}
 </p>
 <p>
-  {{n 
-    '{{count}} item in cart.' 
-    '{{count}} items in cart.' 
+  {{n
+    '{{count}} item in cart.'
+    '{{count}} items in cart.'
     @itemCount
   }}
 </p>

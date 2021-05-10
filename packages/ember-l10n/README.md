@@ -28,8 +28,8 @@ let ENV = {
   // ...
   '@ember-gettext/ember-l10n': {
     locales: ['en', 'de', 'ko'],
-    defaultLocale: 'en' // defaults value
-    defaultPluralForm: 'nplurals=2; plural=(n != 1);' // default value
+    defaultLocale: 'en', // defaults value
+    defaultPluralForm: 'nplurals=2; plural=(n != 1);', // default value
   },
 };
 ```
