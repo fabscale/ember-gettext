@@ -13,7 +13,7 @@ These can then be translated via a translation tool of your choice, and then con
 
 ## Installation
 
-```bash
+```sh
 ember install @ember-gettext/gettext-parser
 ```
 
