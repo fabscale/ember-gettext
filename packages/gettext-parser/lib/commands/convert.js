@@ -84,7 +84,8 @@ module.exports = {
     }
 
     let strData = JSON.stringify(poFileJson, null, 2);
-    fs.writeFileSync(fullOutputPath, strData, 'utf8');
+    await fs.ensureFile(fullOutputPath);
+    await fs.writeFile(fullOutputPath, strData, 'utf8');
 
     this.ui.writeLine(
       chalk.green.bold(`\n\n${fullOutputPath} was successfully generated ✔`)
