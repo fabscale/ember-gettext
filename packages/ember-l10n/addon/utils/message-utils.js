@@ -66,7 +66,8 @@ export function sanitizeJSON(json) {
 
 // Takes something like: nplurals=2; plural=(n != 1); or nplurals=1; plural=0;
 export function setupPluralFactory(pluralForm, defaultPluralForm) {
-  let regex = /^\s*nplurals=\s*(\d+)\s*;\s*plural\s*=\s*([-+*/%?!&|=<>():;n\d\s]+);$/;
+  let regex =
+    /^\s*nplurals=\s*(\d+)\s*;\s*plural\s*=\s*([-+*/%?!&|=<>():;n\d\s]+);$/;
 
   if (!pluralForm || !pluralForm.match(regex)) {
     console.error(
