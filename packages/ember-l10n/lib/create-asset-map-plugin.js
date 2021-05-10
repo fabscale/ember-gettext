@@ -2,8 +2,8 @@ const Plugin = require('broccoli-plugin');
 const path = require('path');
 
 module.exports = class CreateAssetMapPlugin extends Plugin {
-  constructor(inputNode, { destDir }) {
-    super([inputNode], {});
+  constructor(inputNode, { destDir, annotation }) {
+    super([inputNode], { needsCache: false, annotation });
 
     this.destDir = destDir;
   }

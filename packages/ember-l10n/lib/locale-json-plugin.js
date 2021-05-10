@@ -10,10 +10,6 @@ module.exports = class LocaleJsonPlugin extends Filter {
     this.targetExtension = 'js';
   }
 
-  cacheKey2() {
-    // return md5(Filter.prototype.call(this) + inputOptionsChecksum + dependencyVersionChecksum);
-  }
-
   processString(content) {
     return 'export default ' + content + ';';
   }

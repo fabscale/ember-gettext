@@ -181,7 +181,9 @@ export default class L10nService extends Service {
 
   async _ensureLocaleModuleMapIsLoaded() {
     try {
-      let assetMapModule = await this._loadImport('/assets/locales/index.js');
+      let assetMapModule = await this._loadImport(
+        /* webpackIgnore: true */ '/assets/locales/index.js'
+      );
       this._localeModuleMap = assetMapModule.default;
     } catch (error) {
       console.error(`ember-l10n: Error trying to fetch locale module map`);
@@ -194,7 +196,7 @@ export default class L10nService extends Service {
   }
 
   _loadImport(filePath) {
-    return import(filePath);
+    return import(/* webpackIgnore: true */ filePath);
   }
 
   _validateLocales() {
