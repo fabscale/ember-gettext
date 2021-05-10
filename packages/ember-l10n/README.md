@@ -192,6 +192,19 @@ de:
 The content of between `{{#1}}...{{/1}}`, in the example `Einstellungen`,
 will be available as `{{text}}` to the named block.
 
+### Locale files
+
+Locale files can be generated with [gettext-parser](./../gettext-parser). 
+
+ember-l10n expects properly formatted .json files (e.g. `de.json`, `en.json`) in the `./translations` folder of your app.
+These files will be automatically converted into `.js` files at build time, which will be located under `assets/locales`, e.g. `assets/locales/en.js`. 
+The .js files will then be imported as regular dynamic JS imports. 
+
+There is a central `assets/locales/index.js` file which holds a map of all available locales to import. This is necessary for tools like broccoli-asset-rev to be able to properly re-write the locale paths, as they are generated at build time.
+
+You will have to make sure to either let them be fingerprinted (which happens automatically by broccoli-asset-rev) 
+or otherwise handle cache invalidation of these files yourself.
+
 ## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
@@ -199,7 +212,3 @@ See the [Contributing](CONTRIBUTING.md) guide for details.
 ## License
 
 This project is licensed under the [MIT License](LICENSE.md).
-
-```
-
-```
