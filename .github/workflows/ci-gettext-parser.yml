@@ -1,0 +1,35 @@
+name: ci-gettext-parser
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/gettext-parser/**"
+      # Generic files
+      - ".github/workflows/ci-gettext-parser.yml"
+      - "yarn.lock"
+  pull_request:
+    paths:
+      - "packages/gettext-parser/**"
+      # Generic files
+      - ".github/workflows/ci-gettext-parser.yml"
+      - "yarn.lock"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - uses: mydea/actions-ember-testing@v2
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run tests
+        run: yarn test:node
+        working-directory: packages/gettext-parser
+      - name: Lint
+        run: yarn lint:js
+        working-directory: packages/gettext-parser
