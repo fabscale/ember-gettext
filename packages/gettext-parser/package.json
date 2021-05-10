@@ -1,6 +1,6 @@
 {
   "name": "@ember-gettext/gettext-parser",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Parse and generate .po files.",
   "keywords": [
     "ember-addon"
