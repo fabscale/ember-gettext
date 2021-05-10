@@ -1,6 +1,9 @@
 # compiled output
 /dist/
 /tmp/
+/node-tests
+/translations
+jsconfig.json
 
 # dependencies
 /bower_components/
