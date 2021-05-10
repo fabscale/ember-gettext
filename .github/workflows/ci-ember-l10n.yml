@@ -1,0 +1,54 @@
+name: ci-ember-l10n
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/ember-l10n/**"
+      # Generic files
+      - ".github/workflows/ci-ember-l10n.yml"
+      - "yarn.lock"
+  pull_request:
+    paths:
+      - "packages/ember-l10n/**"
+      # Generic files
+      - ".github/workflows/ci-ember-l10n.yml"
+      - "yarn.lock"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - uses: mydea/actions-ember-testing@v2
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run tests
+        run: yarn test:ember
+        working-directory: packages/ember-l10n
+      - name: Lint
+        run: yarn lint
+        working-directory: packages/ember-l10n
+
+  test-matrix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    strategy:
+      matrix:
+        # Keep this in sync with config/ember-try.js
+        ember: [ember-3.25, ember-release, ember-beta, ember-canary]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - uses: mydea/actions-ember-testing@v2
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run tests
+        run: yarn test:ember-one ${{ matrix.ember }}
+        working-directory: packages/ember-l10n
