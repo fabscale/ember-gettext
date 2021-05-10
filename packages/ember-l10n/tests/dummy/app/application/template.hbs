@@ -1,0 +1,62 @@
+ember-l10n
+
+<div>
+  <button {{on 'click' (fn this.selectLocale 'en')}}>
+    en
+  </button>
+  <button {{on 'click' (fn this.selectLocale 'de')}}>
+    de
+  </button>
+  <button {{on 'click' (fn this.selectLocale 'ko')}}>
+    ko
+  </button>
+</div>
+
+<div>
+  {{this.translatedMessage}}
+</div>
+
+<div>
+  <input value={{this.name}} {{on 'input' this.updateName}} />
+</div>
+
+<div>
+  {{t 'My name is {{name}}.' name=this.name}}
+</div>
+
+<div>
+  <button {{on 'click' this.updateCount}}>
+    Increase count
+  </button>
+</div>
+
+<div>
+  {{n
+    'You have {{count}} unit in your cart.'
+    'You have {{count}} units in your cart.'
+    this.count
+  }}
+</div>
+
+<div>
+  <L10nMessage
+    @message={{
+      t
+      'This is a {{link}} with a {{#1}}link{{/1}} next to it. 
+      And also {{#2 }}another one{{/ 2 }} afterwards.'
+      link='normal placeholder'
+    }}
+  >
+    <:first as |text|>
+      <a href='#'>
+        {{text}}
+      </a>
+    </:first>
+
+    <:third as |text|>
+      <strong>
+        {{text}}
+      </strong>
+    </:third>
+  </L10nMessage>
+</div>

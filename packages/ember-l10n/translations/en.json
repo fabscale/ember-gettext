@@ -1,0 +1,129 @@
+{
+  "charset": "utf-8",
+  "headers": {
+    "project-id-version": "My App 1.0",
+    "report-msgid-bugs-to": "support@mycompany.com",
+    "pot-creation-date": "2018-01-04 08:41+0100",
+    "po-revision-date": "2018-01-04 08:41+0100",
+    "last-translator": "Automatically generated",
+    "language-team": "none",
+    "language": "en",
+    "mime-version": "1.0",
+    "content-type": "text/plain; charset=UTF-8",
+    "content-transfer-encoding": "8bit",
+    "plural-forms": "nplurals=2; plural=(n != 1);"
+  },
+  "translations": {
+    "": {
+      "": {
+        "msgid": "",
+        "comments": {
+          "translator": "English translations for My App package.\nCopyright (C) 2018 My Company\nThis file is distributed under the same license as the My App package.\nAutomatically generated, 2018.\n"
+        },
+        "msgstr": [
+          "Project-Id-Version: My App 1.0\nReport-Msgid-Bugs-To: support@mycompany.com\nPOT-Creation-Date: 2018-01-04 08:41+0100\nPO-Revision-Date: 2018-01-04 08:41+0100\nLast-Translator: Automatically generated\nLanguage-Team: none\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+        ]
+      },
+      "en": {
+        "msgid": "en",
+        "comments": {
+          "reference": "tests/dummy/app/services/l10n.js:7 tests/unit/services/l10n-test.js:172"
+        },
+        "msgstr": [
+          "en"
+        ]
+      },
+      "de": {
+        "msgid": "de",
+        "comments": {
+          "reference": "tests/dummy/app/services/l10n.js:8"
+        },
+        "msgstr": [
+          "de"
+        ]
+      },
+      "ko": {
+        "msgid": "ko",
+        "comments": {
+          "reference": "tests/dummy/app/services/l10n.js:9"
+        },
+        "msgstr": [
+          "ko"
+        ]
+      },
+      "You have {{count}} unit in your cart.": {
+        "msgid": "You have {{count}} unit in your cart.",
+        "comments": {
+          "reference": "tests/unit/services/l10n-test.js:148 tests/unit/services/l10n-test.js:206\ntests/unit/services/l10n-test.js:217 tests/unit/services/l10n-test.js:227\ntests/unit/services/l10n-test.js:238"
+        },
+        "msgid_plural": "You have {{count}} units in your cart.",
+        "msgstr": [
+          "You have {{count}} unit in your cart.",
+          "You have {{count}} units in your cart."
+        ]
+      },
+      "I'm a {{placeholder}}.": {
+        "msgid": "I'm a {{placeholder}}.",
+        "comments": {
+          "reference": "tests/unit/services/l10n-test.js:179"
+        },
+        "msgstr": [
+          "I'm a {{placeholder}}."
+        ]
+      },
+      "STATUS_ACTIVE": {
+        "msgid": "STATUS_ACTIVE",
+        "comments": {
+          "reference": "tests/unit/services/l10n-test.js:189"
+        },
+        "msgstr": [
+          "STATUS_ACTIVE"
+        ]
+      },
+      "Current status: {{status}}": {
+        "msgid": "Current status: {{status}}",
+        "comments": {
+          "reference": "tests/unit/services/l10n-test.js:188"
+        },
+        "msgstr": [
+          "Current status: {{status}}"
+        ]
+      },
+      "testing": {
+        "msgid": "testing",
+        "comments": {
+          "reference": "tests/unit/services/l10n-test.js:317"
+        },
+        "msgstr": [
+          "testing"
+        ]
+      }
+    },
+    "menu": {
+      "user": {
+        "msgid": "user",
+        "msgctxt": "menu",
+        "comments": {
+          "reference": "tests/unit/services/l10n-test.js:250 tests/unit/services/l10n-test.js:256"
+        },
+        "msgid_plural": "users",
+        "msgstr": [
+          "user",
+          "users"
+        ]
+      },
+      "You have {{count}} subscription": {
+        "msgid": "You have {{count}} subscription",
+        "msgctxt": "menu",
+        "comments": {
+          "reference": "tests/unit/services/l10n-test.js:263"
+        },
+        "msgid_plural": "You have {{count}} subscriptions",
+        "msgstr": [
+          "You have {{count}} subscription",
+          "You have {{count}} subscriptions"
+        ]
+      }
+    }
+  }
+}

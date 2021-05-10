@@ -1,0 +1,11 @@
+{{#each this.parts as |part|~}}
+  {{~#if (l10n-eq part.pos 1)}}
+    {{~yield part.text to='first'~}}
+  {{~else if (l10n-eq part.pos 2)}}
+    {{~yield part.text to='second'~}}
+  {{~else if (l10n-eq part.pos 3)}}
+    {{~yield part.text to='third'~}}
+  {{~else~}}
+    {{~part.text~}}
+  {{~/if~}}
+{{~/each}}
