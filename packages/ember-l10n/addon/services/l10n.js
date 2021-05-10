@@ -15,7 +15,7 @@ export default class L10nService extends Service {
   @tracked l10nTranslations;
   @tracked pluralFactory;
 
-  // Configured via environment.js ['ember-l10n']
+  // Configured via environment.js ['@ember-gettext/ember-l10n']
   defaultLocale = 'en';
   defaultPluralForm = 'nplurals=2; plural=(n != 1);';
   availableLocales = ['en'];
@@ -26,7 +26,7 @@ export default class L10nService extends Service {
     super(...arguments);
 
     let config = getOwner(this).resolveRegistration('config:environment');
-    let l10nConfig = config['ember-l10n'];
+    let l10nConfig = config['@ember-gettext/ember-l10n'];
     this._loadConfig(l10nConfig);
 
     this._validateLocales();
@@ -123,7 +123,7 @@ export default class L10nService extends Service {
     assert(
       `ember-l10n: You have to specify available locales in config/environment.js, like this:
 
-'ember-l10n': {
+'@ember-gettext/ember-l10n': {
   locales: ['en', 'de']
 }`,
       Array.isArray(l10nConfig?.locales)
