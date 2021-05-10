@@ -6,7 +6,7 @@ const { traverseJson } = require('./../utils/traverse-json');
 const { validate } = require('./../utils/validate-json');
 
 module.exports = {
-  name: 'l10n:convert',
+  name: 'gettext:convert',
   works: 'insideProject',
   description: 'Convert a .po file to a .json file usable by ember-l10n',
 

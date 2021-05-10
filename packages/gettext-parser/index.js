@@ -5,8 +5,8 @@ module.exports = {
 
   includedCommands() {
     return {
-      'l10n:extract': require('./lib/commands/extract'),
-      'l10n:convert': require('./lib/commands/convert'),
+      'gettext:extract': require('./lib/commands/extract'),
+      'gettext:convert': require('./lib/commands/convert'),
     };
   },
 };

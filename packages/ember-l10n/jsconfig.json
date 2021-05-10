@@ -6,5 +6,5 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
   },
-  "exclude": ["node_modules", "dist", "tmp", "coverage", "vendor"]
+  "exclude": ["node_modules", "dist", "tmp", "coverage", "vendor", "translations"]
 }

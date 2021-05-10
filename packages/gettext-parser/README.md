@@ -1,4 +1,4 @@
-# gettext-parser
+# @ember-gettext/gettext-parser
 
 Use the gettext (po) translation format to provide translations for your Ember app.
 
@@ -11,11 +11,17 @@ These can then be translated via a translation tool of your choice, and then con
 - Ember CLI v2.13 or above
 - Node.js v14 or above
 
+## Installation
+
+```bash
+ember install @ember-gettext/gettext-parser
+```
+
 ## Usage
 
 ### Extraction
 
-You can extract translations with `ember l10n:extract`. Use `ember help l10n:extract` to see all available options.
+You can extract translations with `ember gettext:extract`. Use `ember help gettext:extract` to see all available options.
 
 By default, it will extract all filed from `./app`, as well as all `./addon` and `./app` files from any installed addon that has `ember-l10n` as a dependency.
 

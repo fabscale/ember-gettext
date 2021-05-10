@@ -7,7 +7,7 @@ const { parseHbsFile } = require('./../utils/parse-hbs');
 const { buildPoFile } = require('../utils/build-po-file');
 
 module.exports = {
-  name: 'l10n:extract',
+  name: 'gettext:extract',
   works: 'insideProject',
   description:
     'Extract translation messages from your app, from .js, .ts and .hbs files.',
@@ -138,7 +138,7 @@ function parseAddons(inputDirs, addons, { skipDependencies }) {
 }
 
 function checkAddon(inputDirs, addon, { skipDependencies }) {
-  let l10nAddonName = 'ember-l10n';
+  let l10nAddonName = '@gettext-parser/ember-l10n';
   let addonName = addon?.name;
 
   if (

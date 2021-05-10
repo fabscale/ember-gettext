@@ -1,7 +1,7 @@
 {
-  "name": "gettext-parser",
+  "name": "@ember-gettext/gettext-parser",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Parse and generate .po files.",
   "keywords": [
     "ember-addon"
   ],
@@ -14,7 +14,9 @@
   },
   "scripts": {
     "test:node": "node node-tests/index.js",
-    "run-extract": "ember l10n:extract -i node-tests/fixtures/test-app"
+    "run-extract": "ember gettext:extract -i node-tests/fixtures/test-app",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix"
   },
   "dependencies": {
     "@babel/parser": "^7.12.3",

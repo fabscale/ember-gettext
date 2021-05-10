@@ -1,1 +1,1 @@
-ember-po-l10n
+ember-gettext

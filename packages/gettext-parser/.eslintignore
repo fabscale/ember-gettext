@@ -1,0 +1,6 @@
+node_modules
+tmp
+dist
+.eslintcache
+translations
+node-tests/fixtures

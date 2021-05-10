@@ -1,7 +1,4 @@
 {
-  "name": "ember-po-l10n",
-  "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "private": true,
   "workspaces": [
