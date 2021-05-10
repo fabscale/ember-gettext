@@ -1,6 +1,7 @@
 {
   "name": "@ember-gettext/ember-l10n",
   "version": "0.1.0",
+  "private": false,
   "description": "Handle translations in your Ember app with gettext.",
   "keywords": [
     "ember-addon"
