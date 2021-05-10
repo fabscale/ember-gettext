@@ -1,5 +1,5 @@
 import { assert } from '@ember/debug';
-import { guessLocale } from 'ember-l10n/utils/guess-locale';
+import { guessLocale } from '@ember-gettext/ember-l10n/utils/guess-locale';
 
 export function detectLocale({
   defaultLocale = 'en',

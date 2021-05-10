@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ember-l10n 0.0.0\n"
+"POT-Creation-Date: 2021-05-10T09:36:49.492Z\n"
+"PO-Revision-Date: 2021-05-10T09:36:49.492Z\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Generated from source\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: tests/dummy/app/application/controller.js:13:11
+msgid "Hello world!"
+msgstr ""
+
+#: tests/dummy/app/application/controller.js:21:16
+msgid "test thingy"
+msgstr ""
+
+#: tests/dummy/app/application/controller.js:22:16
+#: tests/dummy/app/application/template.hbs:24:2
+msgid "My name is {{name}}."
+msgstr ""
+
+#: tests/dummy/app/application/controller.js:24:6
+msgid "My name is {{name}} {{count}}."
+msgid_plural "my names are {{name}} {{count}}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: tests/dummy/app/application/template.hbs:34:2
+msgid "You have {{count}} unit in your cart."
+msgid_plural "You have {{count}} units in your cart."
+msgstr[0] ""
+msgstr[1] ""
+
+#: tests/dummy/app/application/template.hbs:43:13
+msgid ""
+"This is a {{link}} with a {{#1}}link{{/1}} next to it. \n"
+"And also {{#2 }}another one{{/ 2 }} afterwards."
+msgstr ""

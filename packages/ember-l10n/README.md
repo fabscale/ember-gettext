@@ -1,4 +1,4 @@
-# ember-l10n
+# @ember-gettext/ember-l10n
 
 Use the gettext (po) translation format to provide translations for your Ember app.
 
@@ -15,7 +15,7 @@ In the ember-l10n workflow, you use the `t`, and `n` helpers and `l10n.t()` / `l
 ## Installation
 
 ```
-ember install ember-l10n
+ember install @ember-gettext/ember-l10n
 ```
 
 ## Configuration
@@ -26,7 +26,7 @@ You configure ember-l10n in your `environment.js` file like this:
 // config/environment.js
 let ENV = {
   // ...
-  'ember-l10n': {
+  '@ember-gettext/ember-l10n': {
     locales: ['en', 'de', 'ko'],
     defaultLocale: 'en' // defaults value
     defaultPluralForm: 'nplurals=2; plural=(n != 1);' // default value

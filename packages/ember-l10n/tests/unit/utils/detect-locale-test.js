@@ -1,4 +1,4 @@
-import { detectLocale } from 'ember-l10n/utils/detect-locale';
+import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
 import { module, test } from 'qunit';
 
 function mockNavigator(locales) {

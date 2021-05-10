@@ -1,1 +1,1 @@
-export { default } from 'ember-l10n/services/l10n';
+export { default } from '@ember-gettext/ember-l10n/services/l10n';

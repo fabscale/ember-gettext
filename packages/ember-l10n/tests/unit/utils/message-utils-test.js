@@ -3,7 +3,7 @@ import {
   sanitizeMessageId,
   sanitizeJSON,
   setupPluralFactory,
-} from 'ember-l10n/utils/message-utils';
+} from '@ember-gettext/ember-l10n/utils/message-utils';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | message-utils', function () {

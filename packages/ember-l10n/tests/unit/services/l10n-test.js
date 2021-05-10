@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import L10nService from 'ember-l10n/services/l10n';
+import L10nService from '@ember-gettext/ember-l10n/services/l10n';
 import { mockLocale } from 'dummy/tests/helpers/mock-locale';
 
 module('Unit | Service | l10n', function (hooks) {

@@ -1,4 +1,4 @@
-import { guessLocale } from 'ember-l10n/utils/guess-locale';
+import { guessLocale } from '@ember-gettext/ember-l10n/utils/guess-locale';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | guess-locale', function () {

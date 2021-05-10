@@ -1,7 +1,7 @@
 {
-  "name": "ember-l10n",
+  "name": "@ember-gettext/ember-l10n",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Handle translations in your Ember app with gettext.",
   "keywords": [
     "ember-addon"
   ],

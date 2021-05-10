@@ -22,7 +22,7 @@ module.exports = function (environment) {
       // when it is created
     },
 
-    'ember-l10n': {
+    '@ember-gettext/ember-l10n: {
       locales: ['en', 'de', 'ko'],
     },
   };

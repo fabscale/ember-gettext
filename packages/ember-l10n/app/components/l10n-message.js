@@ -1,1 +1,1 @@
-export { default } from 'ember-l10n/components/l10n-message';
+export { default } from '@ember-gettext/ember-l10n/components/l10n-message';

@@ -1,1 +1,1 @@
-export { default } from 'ember-l10n/helpers/n';
+export { default } from '@ember-gettext/ember-l10n/helpers/n';

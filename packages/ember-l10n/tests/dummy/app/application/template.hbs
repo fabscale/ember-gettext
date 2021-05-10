@@ -1,13 +1,13 @@
 ember-l10n
 
 <div>
-  <button {{on 'click' (fn this.selectLocale 'en')}}>
+  <button type='button' {{on 'click' (fn this.selectLocale 'en')}}>
     en
   </button>
-  <button {{on 'click' (fn this.selectLocale 'de')}}>
+  <button type='button' {{on 'click' (fn this.selectLocale 'de')}}>
     de
   </button>
-  <button {{on 'click' (fn this.selectLocale 'ko')}}>
+  <button type='button' {{on 'click' (fn this.selectLocale 'ko')}}>
     ko
   </button>
 </div>
@@ -17,7 +17,10 @@ ember-l10n
 </div>
 
 <div>
-  <input value={{this.name}} {{on 'input' this.updateName}} />
+  <label for='name'>
+    Name
+  </label>
+  <input value={{this.name}} id='name' {{on 'input' this.updateName}} />
 </div>
 
 <div>
@@ -25,7 +28,7 @@ ember-l10n
 </div>
 
 <div>
-  <button {{on 'click' this.updateCount}}>
+  <button type='button' {{on 'click' this.updateCount}}>
     Increase count
   </button>
 </div>

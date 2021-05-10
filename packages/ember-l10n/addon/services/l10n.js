@@ -8,7 +8,7 @@ import {
   sanitizeJSON,
   setupPluralFactory,
   getMessages,
-} from 'ember-l10n/utils/message-utils';
+} from '@ember-gettext/ember-l10n/utils/message-utils';
 
 export default class L10nService extends Service {
   @tracked locale;
