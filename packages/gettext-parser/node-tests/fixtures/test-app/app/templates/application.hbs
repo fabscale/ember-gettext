@@ -1,0 +1,141 @@
+{{! template-lint-disable }}
+
+<h1>
+  Ember l10n
+</h1>
+
+<p>
+  To get more information about how to use the CLI please refer to README.md
+</p>
+
+<label>
+  Language:
+</label>
+<select onchange={{action 'select' value='target.value'}}>
+  {{#each-in languages as |locale label|}}
+    <option value={{locale}} selected={{equal locale selection}}>
+      {{label}}
+    </option>
+  {{/each-in}}
+</select>
+
+<h2>
+  Singular messages
+</h2>
+
+<h3>
+  Input
+</h3>
+<pre>
+  <code>
+    \{{t 'Hello world!'}}
+  </code>
+</pre>
+
+<h3>
+  Output
+</h3>
+{{t 'Hello world!'}}
+
+<h2>
+  Plural messages
+</h2>
+
+<h3>
+  Input
+</h3>
+<pre>
+  <code>
+    \{{n
+    'You have {{count}} unit in your cart.'
+    'You have {{count}} units in your cart.'
+    3
+}}
+  </code>
+</pre>
+
+<h3>
+  Output
+</h3>
+
+<strong>
+  n = 1:
+</strong>
+<span>
+  {{n
+    'You have {{count}} unit in your cart.'
+    'You have {{count}} units in your cart.'
+    1
+  }}
+</span>
+
+<br />
+
+<strong>
+  n = 3:
+</strong>
+<span>
+  {{n
+    'You have {{count}} unit in your cart.'
+    'You have {{count}} units in your cart.'
+    3
+  }}
+</span>
+
+<h2>
+  Placeholder messages
+</h2>
+
+<h3>
+  Input
+</h3>
+<pre>
+  <code>
+    \{{t 'My name is {{name}}.' name='John Doe' }}
+  </code>
+</pre>
+
+<h3>
+  Output
+</h3>
+{{t 'My name is {{name}}.' name='John Doe'}}
+
+<h2>
+  Contextual messages
+</h2>
+
+<h3>
+  Input
+</h3>
+<pre>
+  <code>
+    \{{pt 'User' 'menu'}}
+  </code>
+</pre>
+
+<h3>
+  Output
+</h3>
+{{t 'User' 'menu'}}
+
+<h2>
+  Complex messages
+</h2>
+
+<h3>
+  Output
+</h3>
+<L10nMessage
+  @message={{t 'Read more in our {{#1}}guide{{/1}} or {{#2}}help{{/2}}.'}}
+>
+  <:first as |text|>
+    <a href='http://www.company.com/guidlines'>
+      {{text}}
+    </a>
+  </:first>
+  <:second as |text|>
+    <a href='http://www.company.com/test'>
+      {{text}}
+    </a>
+  </:second>
+</L10nMessage>

@@ -1,0 +1,48 @@
+{
+  "name": "gettext-parser",
+  "version": "0.0.0",
+  "description": "The default blueprint for ember-cli addons.",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "test:node": "node node-tests/index.js",
+    "run-extract": "ember l10n:extract -i node-tests/fixtures/test-app"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.12.3",
+    "@glimmer/syntax": "^0.79.0",
+    "ast-types": "^0.14.2",
+    "chalk": "^4.1.0",
+    "fs-extra": "^10.0.0",
+    "gettext-parser": "^4.0.2",
+    "glob": "^7.1.7"
+  },
+  "devDependencies": {
+    "chai": "~4.3.4",
+    "ember-cli": "~3.26.1",
+    "ember-cli-dependency-checker": "~3.2.0",
+    "loader.js": "~4.7.0",
+    "mocha": "~8.4.0",
+    "npm-run-all": "~4.1.5"
+  },
+  "engines": {
+    "node": ">= 14"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "ember-addon": {
+    "configPath": "tests/dummy/config"
+  }
+}

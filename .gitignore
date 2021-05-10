@@ -2,3 +2,4 @@ node_modules
 tmp
 .eslintcache
 dist
+yarn-error.log

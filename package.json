@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/parser",
+    "packages/gettext-parser",
     "packages/ember-l10n"
   ],
   "scripts": {

@@ -1,0 +1,66 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gettext-parser 0.0.0\n"
+"POT-Creation-Date: 2021-05-10T07:52:44.847Z\n"
+"PO-Revision-Date: 2021-05-10T07:52:44.847Z\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Generated from source\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: node-tests/fixtures/test-app/app/controllers/application.js:12:10
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:19:0
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:20:0
+msgid "en"
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/controllers/application.js:13:10
+msgid "de"
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/controllers/application.js:14:10
+msgid "ko"
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:38:0
+msgid "Hello world!"
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:65:2
+#: node-tests/fixtures/test-app/app/templates/application.hbs:78:2
+msgid "You have {{count}} unit in your cart."
+msgid_plural "You have {{count}} units in your cart."
+msgstr[0] ""
+msgstr[1] ""
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:101:0
+msgid "My name is {{name}}."
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:119:0
+msgctxt "menu"
+msgid "User"
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:129:11
+msgid "Read more in our {{#1}}guide{{/1}} or {{#2}}help{{/2}}."
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:2:2
+msgid "This page only contains text for tests"
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:6:2
+msgid ""
+"Multi-line translations\n"
+"work!"
+msgstr ""
+
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:13:2
+msgid ""
+"Translations with\n"
+"<strong>tags</strong> and weird indentation\n"
+"works"
+msgstr ""
