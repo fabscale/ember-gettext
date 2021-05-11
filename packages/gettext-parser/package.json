@@ -1,6 +1,6 @@
 {
   "name": "@ember-gettext/gettext-parser",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": false,
   "description": "Parse and generate .po files.",
   "keywords": [

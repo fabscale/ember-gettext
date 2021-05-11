@@ -1,3 +1,16 @@
+## v0.3.0 (2021-05-11)
+
+#### :rocket: Enhancement
+* `ember-l10n`
+  * [#7](https://github.com/fabscale/ember-gettext/pull/7) feat: Refactor locale import strategy ([@mydea](https://github.com/mydea))
+
+#### :memo: Documentation
+* `ember-l10n`
+  * [#8](https://github.com/fabscale/ember-gettext/pull/8) chore: Improve documentation ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.2.2 (2021-05-10)
 
 #### :bug: Bug Fix
