@@ -114,17 +114,9 @@ You can use the `{{t}}` and `{{n}}` helpers to output translations right in your
 {{t 'Hello world!'}}
 
 {{!Output: 1 item }}
-{{n
-  '{{count}} item'
-  '{{count}} items'
-  1
-}}
+{{n '{{count}} item' '{{count}} items' 1}}
 {{!Output: 2 items }}
-{{n
-  '{{count}} item'
-  '{{count}} items'
-  2
-}}
+{{n '{{count}} item' '{{count}} items' 2}}
 ```
 
 You can also provide placeholders for these helpers:
@@ -134,12 +126,7 @@ You can also provide placeholders for these helpers:
 {{t 'Hello {{target}}' target='World'}}
 
 {{! Output: John has 1 item }}
-{{n
-  '{{name}} has {{count}} item'
-  '{{name}} has {{count}} items'
-  1
-  name='John'
-}}
+{{n '{{name}} has {{count}} item' '{{name}} has {{count}} items' 1 name='John'}}
 ```
 
 Finally, you can also provide a context like this:
@@ -149,12 +136,7 @@ Finally, you can also provide a context like this:
 {{t 'Hello world' 'landing page'}}
 
 {{! Output: 1 item }}
-{{n
-  '{{count}} item'
-  '{{count}} items'
-  1
-  'landing page'
-}}
+{{n '{{count}} item' '{{count}} items' 1 'landing page'}}
 ```
 
 ### Contextual component
@@ -163,7 +145,10 @@ In the case that you need to include some custom code like HTML or styling insid
 
 ```hbs
 <L10nMessage
-  @message={{t 'Options for {{name}}: {{#1}}Settings{{/1}} or {{#2}}Sign out{{/2}}' name='John'}}
+  @message={{t
+    'Options for {{name}}: {{#1}}Settings{{/1}} or {{#2}}Sign out{{/2}}'
+    name='John'
+  }}
 >
   <:first as |text|>
     <a href='/settings'>{{text}}</a>
@@ -194,16 +179,31 @@ will be available as `{{text}}` to the named block.
 
 ### Locale files
 
-Locale files can be generated with [gettext-parser](./../gettext-parser). 
+Locale files can be generated with [gettext-parser](./../gettext-parser).
 
 ember-l10n expects properly formatted .json files (e.g. `de.json`, `en.json`) in the `./translations` folder of your app.
-These files will be automatically converted into `.js` files at build time, which will be located under `assets/locales`, e.g. `assets/locales/en.js`. 
-The .js files will then be imported as regular dynamic JS imports. 
+These files will be automatically be moved to `assets/locales` at build time, e.g. `assets/locales/en.json`.
 
-There is a central `assets/locales/index.js` file which holds a map of all available locales to import. This is necessary for tools like broccoli-asset-rev to be able to properly re-write the locale paths, as they are generated at build time.
-
-You will have to make sure to either let them be fingerprinted (which happens automatically by broccoli-asset-rev) 
+You will have to make sure to either let them be fingerprinted (which happens automatically by broccoli-asset-rev)
 or otherwise handle cache invalidation of these files yourself.
+
+### Locale detection
+
+You can use the included `detectLocale()` method to detect a fitting locale based on the browsers settings:
+
+```js
+export default class ApplicationRoute extends Route {
+  @service l10n;
+
+  async beforeModel() {
+    let locale = this.l10n.detectLocale();
+
+    await this.l10n.setLocale(locale);
+  }
+}
+```
+
+This will pick the first matching locale from the available locales for you.
 
 ## Contributing
 

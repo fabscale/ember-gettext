@@ -41,6 +41,20 @@ let ENV = {
 };
 ```
 
+Then ensure to set your locale in your application route like this:
+
+```js
+// app/application/route.js
+
+export default class ApplicationRoute extends Route {
+  @service l10n;
+
+  async beforeModel() {
+    await this.l10n.setLocale('en');
+  }
+}
+```
+
 ### Usage
 
 #### In Handlebars templates
@@ -50,11 +64,7 @@ let ENV = {
   {{t 'Hello {{name}}' name=@userName}}
 </p>
 <p>
-  {{n
-    '{{count}} item in cart.'
-    '{{count}} items in cart.'
-    @itemCount
-  }}
+  {{n '{{count}} item in cart.' '{{count}} items in cart.' @itemCount}}
 </p>
 ```
 
