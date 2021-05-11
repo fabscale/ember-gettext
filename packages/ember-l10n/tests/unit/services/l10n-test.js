@@ -109,9 +109,7 @@ module('Unit | Service | l10n', function (hooks) {
 
     test('it handles a missing locale file', async function (assert) {
       class ExtendedL10nService extends L10nService {
-        _ensureLocaleModuleMapIsLoaded() {
-          this._localeModuleMap = {};
-        }
+        _staticAssetMap = {};
       }
 
       this.owner.register('service:l10n', ExtendedL10nService);
@@ -123,7 +121,7 @@ module('Unit | Service | l10n', function (hooks) {
         assert.step('error is thrown');
         assert.equal(
           error.message,
-          'ember-l10n: Cannot find locale file path for locale "de"',
+          'Assertion Failed: ember-l10n: Cannot find locale file path for locale "de"',
           'error is correct'
         );
       }
@@ -135,11 +133,7 @@ module('Unit | Service | l10n', function (hooks) {
 
     test('it handles non-loadable locale file', async function (assert) {
       class ExtendedL10nService extends L10nService {
-        _loadImport(path) {
-          if (path === '/assets/locales/index.js') {
-            return { default: { de: '/non-existing.json' } };
-          }
-
+        _fetch(path) {
           throw new Error(`TEST error cannot load ${path}`);
         }
       }
@@ -153,33 +147,7 @@ module('Unit | Service | l10n', function (hooks) {
         assert.step('error is thrown');
         assert.equal(
           error.message,
-          'TEST error cannot load /non-existing.json',
-          'error is correct'
-        );
-      }
-
-      assert.equal(l10n.locale, 'en', 'locale is not updated');
-
-      assert.verifySteps(['error is thrown']);
-    });
-
-    test('it handles non-loadable locale index file', async function (assert) {
-      class ExtendedL10nService extends L10nService {
-        _loadImport(path) {
-          throw new Error(`TEST error cannot load ${path}`);
-        }
-      }
-
-      this.owner.register('service:l10n', ExtendedL10nService);
-      let l10n = this.owner.lookup('service:l10n');
-
-      try {
-        await l10n.setLocale('de');
-      } catch (error) {
-        assert.step('error is thrown');
-        assert.equal(
-          error.message,
-          'ember-l10n: Cannot find locale file path for locale "de"',
+          'TEST error cannot load /assets/locales/de.json',
           'error is correct'
         );
       }

@@ -9,6 +9,7 @@ import {
   setupPluralFactory,
   getMessages,
 } from '@ember-gettext/ember-l10n/utils/message-utils';
+import fetch from 'fetch';
 
 export default class L10nService extends Service {
   @tracked locale;
@@ -20,7 +21,8 @@ export default class L10nService extends Service {
   defaultPluralForm = 'nplurals=2; plural=(n != 1);';
   availableLocales = ['en'];
 
-  _localeModuleMap;
+  // This will be replaced at build time via a babel plugin with the actual asset map
+  _staticAssetMap;
 
   constructor() {
     super(...arguments);
@@ -147,24 +149,19 @@ export default class L10nService extends Service {
   }
 
   async _loadLocaleFile(locale) {
-    await this._ensureLocaleModuleMapIsLoaded();
-
-    let localeFilePath = this._getLocaleFilePath(locale);
-
-    if (!localeFilePath) {
-      throw new Error(
-        `ember-l10n: Cannot find locale file path for locale "${locale}"`
-      );
-    }
-
     let localeData;
+
+    let localePath = this._staticAssetMap[locale];
+
+    assert(
+      `ember-l10n: Cannot find locale file path for locale "${locale}"`,
+      Boolean(localePath)
+    );
+
     try {
-      let localeDataModule = await this._loadImport(localeFilePath);
-      localeData = localeDataModule.default;
+      localeData = await this._fetch(localePath);
     } catch (error) {
-      console.error(
-        `ember-l10n: Error trying to fetch locale module ${localeFilePath} for locale ${locale}`
-      );
+      console.error(`ember-l10n: Error trying to fetch locale ${locale}`);
       throw error;
     }
 
@@ -179,24 +176,9 @@ export default class L10nService extends Service {
     this.pluralFactory = setupPluralFactory(pluralForm, this.defaultPluralForm);
   }
 
-  async _ensureLocaleModuleMapIsLoaded() {
-    try {
-      let assetMapModule = await this._loadImport(
-        /* webpackIgnore: true */ '/assets/locales/index.js'
-      );
-      this._localeModuleMap = assetMapModule.default;
-    } catch (error) {
-      console.error(`ember-l10n: Error trying to fetch locale module map`);
-      console.error(error);
-    }
-  }
-
-  _getLocaleFilePath(locale) {
-    return this._localeModuleMap?.[locale];
-  }
-
-  _loadImport(filePath) {
-    return import(/* webpackIgnore: true */ filePath);
+  async _fetch(localePath) {
+    let response = await fetch(localePath);
+    return response.json();
   }
 
   _validateLocales() {

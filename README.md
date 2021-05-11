@@ -91,3 +91,14 @@ ember gettext:extract
 # Generate usable .json file for application for translated .po files
 ember gettext:convert --locale=de
 ```
+
+## Migration from ember-l10n
+
+This project is basically a fork of [ember-l10n](https://github.com/Cropster/ember-l10n). It is _mostly_ compatible with it, and can be migrated with some minor steps:
+
+0. Run `yarn remove ember-l10n && yarn add @ember-gettext/ember-l10n @ember-gettext/gettext-parser --dev --tilde`
+1. Replace the `ember-l10n` key in your `config/environment.js` with `@ember-gettext/ember-l10n`
+2. Replace usage of `<GetText>` with `<L10nMessage>`
+3. Replace usage of `{{pt}}` with `{{t}}` with an additional argument, as well as `{{pn}}` with `{{n}}`
+4. Move your locale .json files from `public/assets/locales` to `translations`
+5. Use the new streamlined `ember gettext:extract` and `ember gettext:convert` commands instead of `ember l10n:XXX`
