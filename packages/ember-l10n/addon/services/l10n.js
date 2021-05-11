@@ -10,6 +10,7 @@ import {
   getMessages,
 } from '@ember-gettext/ember-l10n/utils/message-utils';
 import fetch from 'fetch';
+import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
 
 export default class L10nService extends Service {
   @tracked locale;
@@ -118,6 +119,11 @@ export default class L10nService extends Service {
     await this._loadLocaleFile(locale);
 
     this.locale = locale;
+  }
+
+  detectLocale() {
+    let { defaultLocale, availableLocales } = this;
+    return detectLocale({ defaultLocale, availableLocales });
   }
 
   // Private
