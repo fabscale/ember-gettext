@@ -2,9 +2,11 @@ const fs = require('fs-extra');
 const chalk = require('chalk');
 const path = require('path');
 const glob = require('glob');
+const gettextParser = require('gettext-parser');
 const { parseJsFile } = require('./../utils/parse-js');
 const { parseHbsFile } = require('./../utils/parse-hbs');
 const { buildPoFile } = require('../utils/build-po-file');
+const { processJSON } = require('./../utils/process-json');
 
 module.exports = {
   name: 'gettext:extract',
@@ -63,18 +65,30 @@ module.exports = {
       default: 'messages.pot',
       description: 'The name of generated POT-file',
     },
+    {
+      name: 'print-changes',
+      type: Boolean,
+      default: false,
+      description:
+        'Print the changed message strings. If false, only show the changed count.',
+    },
   ],
 
   async run(options) {
     let packageName = this.project.name();
     let { version } = this.project.pkg;
 
-    let startTime = +new Date();
-
     let includeRegex = makePatternRegex(options.includePatterns);
     let skipRegex = makePatternRegex(options.skipPatterns);
 
-    let { potName, inputDirs, outputDir, skipDependencies, locale } = options;
+    let {
+      potName,
+      inputDirs,
+      outputDir,
+      skipDependencies,
+      locale,
+      printChanges,
+    } = options;
 
     // parse `node_modules` and add all packages which have a dependency for `ember-l10n`
     // This modifies the given inputDirs
@@ -99,6 +113,18 @@ module.exports = {
 
     // Generate POT file (=message template file without message strings)
     let potFilePath = path.join(outputDir, potName);
+
+    // Fetch existing file to get difference
+    let existingPotJSON;
+
+    try {
+      let existingPotFileContent = fs.readFileSync(potFilePath, 'utf-8');
+      existingPotJSON = gettextParser.po.parse(existingPotFileContent);
+      processJSON(existingPotJSON, { minimize: false });
+    } catch (error) {
+      // ignore
+    }
+
     await generatePoFile(messageGettextItems, {
       withMessages: false,
       targetFileName: potFilePath,
@@ -107,6 +133,16 @@ module.exports = {
       version,
       locale,
     });
+
+    // Generate new JSON to get difference
+    let newPotFileContent = fs.readFileSync(potFilePath, 'utf-8');
+    let newPotJSON = gettextParser.po.parse(newPotFileContent);
+    processJSON(newPotJSON, { minimize: false });
+
+    let { newTerms, obsoleteTerms } = getPotChanges(
+      existingPotJSON,
+      newPotJSON
+    );
 
     // Generate PO file (=base translation file with filled message strings)
     let poFilePath = path.join(outputDir, `${locale}.po`);
@@ -119,14 +155,33 @@ module.exports = {
       locale,
     });
 
-    let endTime = +new Date();
-    let duration = endTime - startTime;
+    if (printChanges) {
+      this.ui.writeLine(chalk.bold(`\nNew terms:`));
+      newTerms.forEach((term) => {
+        this.ui.writeLine(chalk.dim(` • ${term}`));
+      });
 
-    this.ui.writeLine(
-      chalk.green.bold(
-        `\n\nTime to complete: ${(duration / 1000).toFixed(2)} seconds`
-      )
-    );
+      if (newTerms.length === 0) {
+        this.ui.writeLine(chalk.dim(' -'));
+      }
+
+      this.ui.writeLine(chalk.bold(`\nObsolete terms:`));
+      obsoleteTerms.forEach((term) => {
+        this.ui.writeLine(chalk.dim(` • ${term}`));
+      });
+
+      if (obsoleteTerms.length === 0) {
+        this.ui.writeLine(chalk.dim(' -'));
+      }
+
+      this.ui.writeLine('');
+    } else {
+      this.ui.writeLine(
+        chalk.bold(
+          `\n${newTerms.length} new term(s) added, ${obsoleteTerms.length} term(s) obsolete\n`
+        )
+      );
+    }
   },
 };
 
@@ -256,4 +311,30 @@ function filterFiles(files, { includeRegex, skipRegex }) {
       (!includeRegex || file.match(includeRegex)) &&
       (!skipRegex || !file.match(skipRegex))
   );
+}
+
+function getPotChanges(existingPotJSON, newPotJSON) {
+  let obsoleteTerms = [];
+  let newTerms = [];
+
+  let existingTranslations = existingPotJSON?.translations || {};
+  let newTranslations = newPotJSON.translations;
+
+  Object.keys(existingTranslations).forEach((context) => {
+    Object.keys(existingTranslations[context]).forEach((messageId) => {
+      if (!newTranslations[context]?.[messageId]) {
+        obsoleteTerms.push(context ? `${context}::${messageId}` : messageId);
+      }
+    });
+  });
+
+  Object.keys(newTranslations).forEach((context) => {
+    Object.keys(newTranslations[context]).forEach((messageId) => {
+      if (!existingTranslations[context]?.[messageId]) {
+        newTerms.push(context ? `${context}::${messageId}` : messageId);
+      }
+    });
+  });
+
+  return { newTerms, obsoleteTerms };
 }
