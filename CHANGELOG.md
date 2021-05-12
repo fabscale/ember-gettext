@@ -1,3 +1,12 @@
+## v0.3.1 (2021-05-12)
+
+#### :bug: Bug Fix
+* `gettext-parser`
+  * [#9](https://github.com/fabscale/ember-gettext/pull/9) Do not warn on placeholders inside of complex placeholders ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.3.0 (2021-05-11)
 
 #### :rocket: Enhancement
