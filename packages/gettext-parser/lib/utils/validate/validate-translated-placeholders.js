@@ -1,5 +1,6 @@
 // find all: {{#1}}message{{/1}}
 const regex = /{{#\s*(\d+)\s*}}(.*){{\/\s*(\1+)\s*}}/gm;
+const placeholderRegex = /{{(.*)}}/;
 
 /**
  * Validate the translated (complex) placeholders of an item.
@@ -83,13 +84,14 @@ function checkTranslatedPlaceholders(
     // Only if the string is translated but the placeholder part not will this show a warning
     // NOTE: This is just a warning (not an error), as it is theoretically possible this is done on purpose
     // E.g. a word _might_ be the same in translated form
+    // Also, placeholders are ignored (e.g. {{#1}}{{name}}{{/1}})
     if (id === translation) {
       return;
     }
 
     let invalidTranslatedPlaceholder = translatedPlaceholderConfig.find(
       (config) => {
-        return config.content === content;
+        return config.content === content && !placeholderRegex.test(content);
       }
     );
 

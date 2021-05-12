@@ -134,4 +134,16 @@ describe('validateTranslatedPlaceholders util', function () {
     ];
     expect(validationErrors).to.deep.equal(expected);
   });
+
+  it('it works with placeholders containing placeholders', function () {
+    let validationErrors = [];
+    let gettextItem = {
+      id: 'My test {{#1}}{{name}}{{/1}}',
+      translations: ['Mein test {{#1}}{{name}}{{/1}}'],
+    };
+    validateTranslatedPlaceholders(gettextItem, validationErrors);
+
+    let expected = [];
+    expect(validationErrors).to.deep.equal(expected);
+  });
 });
