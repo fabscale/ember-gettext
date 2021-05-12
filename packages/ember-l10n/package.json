@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
+    "run-extract": "ember gettext:extract -i tests/dummy",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel 'lint:!(fix)'",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",

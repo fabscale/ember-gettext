@@ -42,6 +42,9 @@ You can use these configuration options:
 
 # Use this as the locale of messageIds (defaults to en)
 --locale de
+
+# If enabled, new and obsolete terms will be printed to the console
+--print-changes
 ```
 
 ### Conversion
