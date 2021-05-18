@@ -1,3 +1,12 @@
+## v0.3.2 (2021-05-18)
+
+#### :rocket: Enhancement
+* `ember-l10n`, `gettext-parser`
+  * [#10](https://github.com/fabscale/ember-gettext/pull/10) Show new/removed term count when extracting ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.3.1 (2021-05-12)
 
 #### :bug: Bug Fix
