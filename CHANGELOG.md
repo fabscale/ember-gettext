@@ -1,3 +1,16 @@
+## v0.3.3 (2021-05-20)
+
+#### :rocket: Enhancement
+* `ember-l10n`
+  * [#11](https://github.com/fabscale/ember-gettext/pull/11) Set lang attribute on HTML tag ([@mydea](https://github.com/mydea))
+
+#### :bug: Bug Fix
+* `ember-l10n`
+  * [#12](https://github.com/fabscale/ember-gettext/pull/12) Ensure asset map creation works for embroider ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.3.2 (2021-05-18)
 
 #### :rocket: Enhancement
