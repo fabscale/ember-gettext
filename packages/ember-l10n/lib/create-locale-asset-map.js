@@ -13,7 +13,10 @@ module.exports = class CreateLocaleAssetMap {
 
   toTree(tree) {
     let l10nServiceTree = funnel(tree, {
-      include: ['@ember-gettext/ember-l10n/services/l10n.js'],
+      include: [
+        '@ember-gettext/ember-l10n/services/l10n.js',
+        'services/l10n.js',
+      ],
     });
 
     let l10nServiceTreeWithAssetMap = new AddStaticImportPathsPlugin(
