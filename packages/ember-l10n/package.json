@@ -37,7 +37,7 @@
     "broccoli-plugin": "^4.0.7",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
-    "ember-fetch": "^8.0.4"
+    "ember-fetch": "^8.1.0"
   },
   "devDependencies": {
     "@ember-gettext/gettext-parser": "0.3.3",
