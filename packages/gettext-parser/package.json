@@ -20,7 +20,7 @@
     "lint:js:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@babel/parser": "^7.14.4",
+    "@babel/parser": "^7.14.7",
     "@glimmer/syntax": "^0.80.0",
     "ast-types": "^0.14.2",
     "chalk": "^4.1.0",
