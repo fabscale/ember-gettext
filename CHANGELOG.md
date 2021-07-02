@@ -1,3 +1,19 @@
+## v0.3.4 (2021-07-02)
+
+#### :house: Internal
+* `gettext-parser`
+  * [#29](https://github.com/fabscale/ember-gettext/pull/29) chore(deps): bump @babel/parser from 7.14.4 to 7.14.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#28](https://github.com/fabscale/ember-gettext/pull/28) chore(deps): bump @glimmer/syntax from 0.79.3 to 0.80.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `ember-l10n`, `gettext-parser`
+  * [#42](https://github.com/fabscale/ember-gettext/pull/42) Update dev dependencies ([@mydea](https://github.com/mydea))
+* `ember-l10n`
+  * [#32](https://github.com/fabscale/ember-gettext/pull/32) chore(deps): bump ember-fetch from 8.0.4 to 8.1.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#39](https://github.com/fabscale/ember-gettext/pull/39) chore(deps): bump broccoli-funnel from 3.0.6 to 3.0.8 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#25](https://github.com/fabscale/ember-gettext/pull/25) Update dev dependencies to latest versions ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.3.3 (2021-05-20)
 
 #### :rocket: Enhancement
