@@ -151,7 +151,7 @@ module('Unit | Utility | message-utils', function () {
       let pluralForm = 'nplurals=2; plural=(n != 1);';
       let result = setupPluralFactory(pluralForm, pluralForm);
 
-      assert.ok(typeof result === 'function', 'result is a function');
+      assert.equal(typeof result, 'function', 'result is a function');
       assert.equal(result(0), 1, 'it works for 0');
       assert.equal(result(1), 0, 'it works for 1');
       assert.equal(result(2), 1, 'it works for 2');
@@ -164,7 +164,7 @@ module('Unit | Utility | message-utils', function () {
       let pluralForm = 'nplurals=1; plural=0;';
       let result = setupPluralFactory(pluralForm, pluralForm);
 
-      assert.ok(typeof result === 'function', 'result is a function');
+      assert.equal(typeof result, 'function', 'result is a function');
       assert.equal(result(0), 0, 'it works for 0');
       assert.equal(result(1), 0, 'it works for 1');
       assert.equal(result(2), 0, 'it works for 2');
