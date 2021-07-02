@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "chai": "~4.3.4",
-    "ember-cli": "~3.26.1",
+    "ember-cli": "~3.27.0",
     "ember-cli-dependency-checker": "~3.2.0",
     "loader.js": "~4.7.0",
     "mocha": "~9.0.1",
