@@ -121,7 +121,7 @@ export default class L10nService extends Service {
     this.locale = locale;
 
     // Ensure lang attribute is set on html tag
-    document?.documentElement.setAttribute('lang', locale);
+    window.document?.documentElement.setAttribute('lang', locale);
   }
 
   detectLocale() {
