@@ -72,6 +72,14 @@ module.exports = {
 
     let validationErrors = validate(poFileJson, { locale });
 
+    // Cleanup JSON output
+    let headers = {
+      locale,
+      'json-creation-date': new Date().toISOString(),
+    };
+    poFileJson.headers = headers;
+    delete poFileJson.charset;
+
     printValidationErrors(validationErrors, { ui: this.ui });
 
     if (validationErrors.some((error) => error.level === 'ERROR')) {
