@@ -64,41 +64,6 @@ export function sanitizeJSON(json) {
   return Object.assign({}, json, { translations: sanitizedTranslations });
 }
 
-// Takes something like: nplurals=2; plural=(n != 1); or nplurals=1; plural=0;
-export function setupPluralFactory(pluralForm, defaultPluralForm) {
-  let regex =
-    /^\s*nplurals=\s*(\d+)\s*;\s*plural\s*=\s*([-+*/%?!&|=<>():;n\d\s]+);$/;
-
-  if (!pluralForm || !pluralForm.match(regex)) {
-    console.error(
-      `Plural form "${pluralForm}" is invalid: 'nplurals=NUMBER; plural=EXPRESSION;' - falling back to ${defaultPluralForm}!`
-    );
-    pluralForm = defaultPluralForm;
-  }
-
-  let maxMessageIndex, pluralExpression;
-  let m;
-  if ((m = regex.exec(pluralForm)) !== null) {
-    maxMessageIndex = m[1] * 1 - 1;
-    pluralExpression = m[2];
-  }
-
-  // eslint-disable-next-line no-unused-vars
-  return (n) => {
-    let pluralPos = eval(pluralExpression);
-
-    if (typeof pluralPos !== 'number') {
-      pluralPos = pluralPos ? 1 : 0;
-    }
-
-    if (pluralPos > maxMessageIndex) {
-      return 0;
-    }
-
-    return pluralPos;
-  };
-}
-
 export function getMessages(l10nTranslations, messageId, context = '') {
   assert(
     `ember-l10n: messageId has to be a string, but is "${messageId}"`,
@@ -112,4 +77,33 @@ export function getMessages(l10nTranslations, messageId, context = '') {
 
   let messageItem = l10nTranslations[context]?.[messageId];
   return messageItem?.msgstr || [];
+}
+
+export function getPluralMessage({
+  messages,
+  count,
+  msgId,
+  msgIdPlural,
+  pluralFactory,
+  defaultPluralFactory,
+}) {
+  // No translation exists for the current locale? Use default one instead
+  if (messages.length === 0) {
+    messages = [msgId, msgIdPlural];
+    pluralFactory = defaultPluralFactory;
+  }
+
+  let messageIndex = pluralFactory.getMessageIndex(count);
+
+  let message = messages[messageIndex];
+
+  assert(
+    `Message with index ${messageIndex} is not found for count=${count}
+Message:
+${msgId}
+`,
+    typeof message === 'string'
+  );
+
+  return message || msgId;
 }

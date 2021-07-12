@@ -2,7 +2,6 @@ import {
   replacePlaceholders,
   sanitizeMessageId,
   sanitizeJSON,
-  setupPluralFactory,
 } from '@ember-gettext/ember-l10n/utils/message-utils';
 import { module, test } from 'qunit';
 
@@ -143,34 +142,6 @@ module('Unit | Utility | message-utils', function () {
           },
         },
       });
-    });
-  });
-
-  module('setupPluralFactory', function () {
-    test('it works with a standard plural form: nplurals=2; plural=(n != 1);', function (assert) {
-      let pluralForm = 'nplurals=2; plural=(n != 1);';
-      let result = setupPluralFactory(pluralForm, pluralForm);
-
-      assert.equal(typeof result, 'function', 'result is a function');
-      assert.equal(result(0), 1, 'it works for 0');
-      assert.equal(result(1), 0, 'it works for 1');
-      assert.equal(result(2), 1, 'it works for 2');
-      assert.equal(result(3), 1, 'it works for 3');
-      assert.equal(result(3000), 1, 'it works for 3000');
-      assert.equal(result(-1), 1, 'it works for -1');
-    });
-
-    test('it works with nplurals=1; plural=0;', function (assert) {
-      let pluralForm = 'nplurals=1; plural=0;';
-      let result = setupPluralFactory(pluralForm, pluralForm);
-
-      assert.equal(typeof result, 'function', 'result is a function');
-      assert.equal(result(0), 0, 'it works for 0');
-      assert.equal(result(1), 0, 'it works for 1');
-      assert.equal(result(2), 0, 'it works for 2');
-      assert.equal(result(3), 0, 'it works for 3');
-      assert.equal(result(3000), 0, 'it works for 3000');
-      assert.equal(result(-1), 0, 'it works for -1');
     });
   });
 });

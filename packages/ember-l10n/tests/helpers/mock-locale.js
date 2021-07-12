@@ -1,4 +1,11 @@
-export function mockLocale(l10nService, translations, messageContext = '') {
+import { PluralFactory } from '@ember-gettext/ember-l10n/utils/plural-factory';
+
+export function mockLocale(
+  l10nService,
+  translations,
+  messageContext = '',
+  { locale } = { locale: 'en' }
+) {
   let poTranslations = {};
 
   Object.keys(translations).forEach((msgid) => {
@@ -17,4 +24,7 @@ export function mockLocale(l10nService, translations, messageContext = '') {
       [messageContext]: poTranslations,
     }
   );
+
+  l10nService.locale = locale;
+  l10nService.pluralFactory = new PluralFactory(locale);
 }
