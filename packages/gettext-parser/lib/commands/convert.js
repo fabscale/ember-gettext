@@ -70,7 +70,7 @@ module.exports = {
       this.ui.writeLine('');
     }
 
-    let validationErrors = validate(poFileJson);
+    let validationErrors = validate(poFileJson, { locale });
 
     printValidationErrors(validationErrors, { ui: this.ui });
 

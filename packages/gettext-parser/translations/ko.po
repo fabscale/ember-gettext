@@ -1,0 +1,69 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gettext-parser 0.0.0\n"
+"POT-Creation-Date: 2021-05-10T07:52:44.847Z\n"
+"PO-Revision-Date: 2021-05-10T07:52:44.847Z\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;"
+
+#: node-tests/fixtures/test-app/app/controllers/application.js:12:10
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:19:0
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:20:0
+msgid "en"
+msgstr "en"
+
+#: node-tests/fixtures/test-app/app/controllers/application.js:13:10
+msgid "de"
+msgstr "de"
+
+#: node-tests/fixtures/test-app/app/controllers/application.js:14:10
+msgid "ko"
+msgstr "ko"
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:38:0
+msgid "Hello world!"
+msgstr "Hallo Welt!"
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:65:2
+#: node-tests/fixtures/test-app/app/templates/application.hbs:78:2
+msgid "You have {{count}} unit in your cart."
+msgid_plural "You have {{count}} units in your cart."
+msgstr[0] "Du hast {{count}} Einheit in deinem Warenkorb."
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:101:0
+msgid "My name is {{name}}."
+msgstr "Mein Name ist {{name}}."
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:119:0
+msgctxt "menu"
+msgid "User"
+msgstr "Benuzter"
+
+#: node-tests/fixtures/test-app/app/templates/application.hbs:129:11
+msgid "Read more in our {{#1}}guide{{/1}} or {{#2}}help{{/2}}."
+msgstr "Lies mehr in unserer {{#1}}Anleitung{{/1}} oder {{#2}}Hilfe{{/2}}."
+
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:2:2
+msgid "This page only contains text for tests"
+msgstr "Diese Seite enthaelt Text fuer Tests."
+
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:6:2
+msgid ""
+"Multi-line translations\n"
+"work!"
+msgstr ""
+"Mehrzeilige Uebersetzungen\n"
+"funktionieren!"
+
+#: node-tests/fixtures/test-app/app/templates/test-page.hbs:13:2
+msgid ""
+"Translations with\n"
+"<strong>tags</strong> and weird indentation\n"
+"works"
+msgstr ""
+"Uebersetzungen mit\n"
+"<strong>Tags</storng und seltsamer Einrueckung\n"
+"funktionieren"
