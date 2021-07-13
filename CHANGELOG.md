@@ -1,3 +1,28 @@
+## v0.4.0 (2021-07-13)
+
+#### :boom: Breaking Change
+* `ember-l10n`
+  * [#46](https://github.com/fabscale/ember-gettext/pull/46) feat: Use canonical region locale names (e.g. `en-US` instead of `en_US`) ([@mydea](https://github.com/mydea))
+* `gettext-parser`
+  * [#45](https://github.com/fabscale/ember-gettext/pull/45) feat: Remove charset from JSON & only keep minimal headers ([@mydea](https://github.com/mydea))
+* `ember-l10n`, `gettext-parser`
+  * [#44](https://github.com/fabscale/ember-gettext/pull/44) Use `Intl.PluralRules()` instead of regex for plural-forms header ([@mydea](https://github.com/mydea))
+
+#### :rocket: Enhancement
+* `ember-l10n`
+  * [#46](https://github.com/fabscale/ember-gettext/pull/46) feat: Use canonical region locale names (e.g. `en-US` instead of `en_US`) ([@mydea](https://github.com/mydea))
+* `gettext-parser`
+  * [#45](https://github.com/fabscale/ember-gettext/pull/45) feat: Remove charset from JSON & only keep minimal headers ([@mydea](https://github.com/mydea))
+* `ember-l10n`, `gettext-parser`
+  * [#44](https://github.com/fabscale/ember-gettext/pull/44) Use `Intl.PluralRules()` instead of regex for plural-forms header ([@mydea](https://github.com/mydea))
+
+#### :bug: Bug Fix
+* `ember-l10n`
+  * [#43](https://github.com/fabscale/ember-gettext/pull/43) fix: Ensure document lang setting is properly ignored on fastboot ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.3.4 (2021-07-02)
 
 #### :house: Internal
