@@ -28,7 +28,7 @@ module('Integration | Helper | n', function (hooks) {
   test('it works without placeholders and count -1', async function (assert) {
     await render(hbs`{{n 'this is one' 'this is multiple' -1}}`);
 
-    assert.dom(this.element).hasText('this is multiple');
+    assert.dom(this.element).hasText('this is one');
   });
 
   test('it automatically provides count placeholder', async function (assert) {

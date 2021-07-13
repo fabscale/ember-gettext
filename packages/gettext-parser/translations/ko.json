@@ -1,0 +1,69 @@
+{
+  "charset": "utf-8",
+  "headers": {
+    "project-id-version": "gettext-parser 0.0.0",
+    "pot-creation-date": "2021-05-10T07:52:44.847Z",
+    "po-revision-date": "2021-05-10T07:52:44.847Z",
+    "language": "ko",
+    "mime-version": "1.0",
+    "content-type": "text/plain; charset=utf-8",
+    "content-transfer-encoding": "8bit",
+    "plural-forms": "nplurals=1; plural=0;"
+  },
+  "translations": {
+    "": {
+      "Hello world!": {
+        "msgid": "Hello world!",
+        "msgstr": [
+          "Hallo Welt!"
+        ]
+      },
+      "Multi-line translations\nwork!": {
+        "msgid": "Multi-line translations\nwork!",
+        "msgstr": [
+          "Mehrzeilige Uebersetzungen\nfunktionieren!"
+        ]
+      },
+      "My name is {{name}}.": {
+        "msgid": "My name is {{name}}.",
+        "msgstr": [
+          "Mein Name ist {{name}}."
+        ]
+      },
+      "Read more in our {{#1}}guide{{/1}} or {{#2}}help{{/2}}.": {
+        "msgid": "Read more in our {{#1}}guide{{/1}} or {{#2}}help{{/2}}.",
+        "msgstr": [
+          "Lies mehr in unserer {{#1}}Anleitung{{/1}} oder {{#2}}Hilfe{{/2}}."
+        ]
+      },
+      "This page only contains text for tests": {
+        "msgid": "This page only contains text for tests",
+        "msgstr": [
+          "Diese Seite enthaelt Text fuer Tests."
+        ]
+      },
+      "Translations with\n<strong>tags</strong> and weird indentation\nworks": {
+        "msgid": "Translations with\n<strong>tags</strong> and weird indentation\nworks",
+        "msgstr": [
+          "Uebersetzungen mit\n<strong>Tags</storng und seltsamer Einrueckung\nfunktionieren"
+        ]
+      },
+      "You have {{count}} unit in your cart.": {
+        "msgid": "You have {{count}} unit in your cart.",
+        "msgid_plural": "You have {{count}} units in your cart.",
+        "msgstr": [
+          "Du hast {{count}} Einheit in deinem Warenkorb."
+        ]
+      }
+    },
+    "menu": {
+      "User": {
+        "msgid": "User",
+        "msgctxt": "menu",
+        "msgstr": [
+          "Benuzter"
+        ]
+      }
+    }
+  }
+}

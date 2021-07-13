@@ -275,4 +275,177 @@ module('Unit | Service | l10n', function (hooks) {
       'XX john doe 1.'
     );
   });
+
+  module('plurals', function () {
+    test('it works with existing translation (de)', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+      mockLocale(
+        l10n,
+        {
+          'I have {{count}} point.': [
+            'Ich habe {{count}} Punkt.',
+            'Ich habe {{count}} Punkte.',
+          ],
+        },
+        '',
+        { locale: 'de' }
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
+        'Ich habe 0 Punkte.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
+        'Ich habe 1 Punkt.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
+        'Ich habe 2 Punkte.'
+      );
+    });
+
+    test('it works with missing translation (de)', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+
+      mockLocale(
+        l10n,
+        {
+          'I have {{count}} point.': [],
+        },
+        '',
+        { locale: 'de' }
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
+        'I have 0 points.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
+        'I have 1 point.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
+        'I have 2 points.'
+      );
+    });
+
+    // ko locale only has one singlular/plural form
+    test('it works with existing translation (ko)', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+      mockLocale(
+        l10n,
+        {
+          'I have {{count}} point.': ['XXX YYY {{count}}.'],
+        },
+        '',
+        { locale: 'ko' }
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
+        'XXX YYY 0.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
+        'XXX YYY 1.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
+        'XXX YYY 2.'
+      );
+    });
+
+    test('it works with missing translation (ko)', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+
+      mockLocale(
+        l10n,
+        {
+          'I have {{count}} point.': [],
+        },
+        '',
+        { locale: 'ko' }
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
+        'I have 0 points.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
+        'I have 1 point.'
+      );
+
+      assert.equal(
+        l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
+        'I have 2 points.'
+      );
+    });
+
+    // ar has all possible forms: zero, one, two, few, many, other
+    test('it works with existing translation (ar)', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+      mockLocale(
+        l10n,
+        {
+          '{{count}} item': ['zero', 'one', 'two', 'few', 'many', 'other'],
+        },
+        '',
+        { locale: 'ar-eg' }
+      );
+
+      assert.equal(l10n.n('{{count}} item', '{{count}} items', 0), 'zero');
+      assert.equal(l10n.n('{{count}} item', '{{count}} items', 1), 'one');
+      assert.equal(l10n.n('{{count}} item', '{{count}} items', 2), 'two');
+      assert.equal(l10n.n('{{count}} item', '{{count}} items', 4), 'few');
+      assert.equal(l10n.n('{{count}} item', '{{count}} items', 8), 'few');
+      assert.equal(l10n.n('{{count}} item', '{{count}} items', 15), 'many');
+      assert.equal(l10n.n('{{count}} item', '{{count}} items', 100), 'other');
+    });
+
+    test('it asserts if trying to use missing plural form (de)', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+      mockLocale(
+        l10n,
+        {
+          'I have {{count}} point.': ['Ich habe {{count}} Punkt.'],
+        },
+        '',
+        { locale: 'de' }
+      );
+
+      assert.throws(
+        () => l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
+        /Assertion Failed: Message with index 1 is not found for count=0/,
+        'it throws an error'
+      );
+    });
+
+    test('it asserts if trying to use missing plural form (ar)', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+      mockLocale(
+        l10n,
+        {
+          '{{count}} item': ['zero', 'one', 'two', 'few', 'many'],
+        },
+        '',
+        { locale: 'ar-eg' }
+      );
+
+      assert.throws(
+        () => l10n.n('{{count}} item', '{{count}} items', 100),
+        /Assertion Failed: Message with index 5 is not found for count=100/,
+        'it throws an error'
+      );
+    });
+  });
 });

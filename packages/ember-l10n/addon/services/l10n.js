@@ -6,11 +6,12 @@ import {
   replacePlaceholders,
   sanitizeMessageId,
   sanitizeJSON,
-  setupPluralFactory,
   getMessages,
+  getPluralMessage,
 } from '@ember-gettext/ember-l10n/utils/message-utils';
 import fetch from 'fetch';
 import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
+import { PluralFactory } from '@ember-gettext/ember-l10n/utils/plural-factory';
 
 export default class L10nService extends Service {
   @tracked locale;
@@ -19,8 +20,8 @@ export default class L10nService extends Service {
 
   // Configured via environment.js ['@ember-gettext/ember-l10n']
   defaultLocale = 'en';
-  defaultPluralForm = 'nplurals=2; plural=(n != 1);';
   availableLocales = ['en'];
+  defaultPluralFactory;
 
   // This will be replaced at build time via a babel plugin with the actual asset map
   _staticAssetMap;
@@ -34,13 +35,11 @@ export default class L10nService extends Service {
 
     this._validateLocales();
 
-    let { defaultLocale, defaultPluralForm } = this;
+    let { defaultLocale } = this;
 
-    this.pluralFactory = setupPluralFactory(
-      defaultPluralForm,
-      defaultPluralForm
-    );
     this.locale = defaultLocale;
+    this.pluralFactory = new PluralFactory(defaultLocale);
+    this.defaultPluralFactory = this.pluralFactory;
   }
 
   t(msgId, hash = {}, msgContext = '') {
@@ -82,21 +81,22 @@ export default class L10nService extends Service {
       typeof msgContext === 'string'
     );
 
-    let { pluralFactory } = this;
-
-    let messageId = sanitizeMessageId(msgId);
-
-    let messages = getMessages(this.l10nTranslations, messageId, msgContext);
-
-    assert(
-      `ember-l10n: No plural factory is loaded`,
-      typeof pluralFactory === 'function'
+    let sanitizedMessageId = sanitizeMessageId(msgId);
+    let messages = getMessages(
+      this.l10nTranslations,
+      sanitizedMessageId,
+      msgContext
     );
 
-    let messageIndex = pluralFactory(count);
-
-    let message =
-      messages[messageIndex] || (messageIndex === 0 ? msgId : msgIdPlural);
+    let { pluralFactory, defaultPluralFactory } = this;
+    let message = getPluralMessage({
+      messages,
+      count,
+      msgId,
+      msgIdPlural,
+      pluralFactory,
+      defaultPluralFactory,
+    });
 
     return replacePlaceholders(message, Object.assign({ count }, hash));
   }
@@ -151,10 +151,6 @@ export default class L10nService extends Service {
     if (l10nConfig.defaultLocale) {
       this.defaultLocale = l10nConfig.defaultLocale;
     }
-
-    if (l10nConfig.defaultPluralForm) {
-      this.defaultPluralForm = l10nConfig.defaultPluralForm;
-    }
   }
 
   async _loadLocaleFile(locale) {
@@ -176,13 +172,10 @@ export default class L10nService extends Service {
 
     let json = sanitizeJSON(localeData);
 
-    let {
-      headers: { 'plural-forms': pluralForm },
-      translations: l10nTranslations,
-    } = json;
+    let { translations: l10nTranslations } = json;
 
     this.l10nTranslations = l10nTranslations;
-    this.pluralFactory = setupPluralFactory(pluralForm, this.defaultPluralForm);
+    this.pluralFactory = new PluralFactory(locale);
   }
 
   async _fetch(localePath) {
