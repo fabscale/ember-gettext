@@ -32,7 +32,7 @@ module('Unit | Utility | detect-locale', function () {
     let detectedLocale = detectLocale({
       defaultLocale: 'en',
       availableLocales: ['en', 'ko', 'de'],
-      navigator: mockNavigator(['de_AT']),
+      navigator: mockNavigator(['de-AT']),
     });
 
     assert.equal(detectedLocale, 'de');
@@ -51,11 +51,11 @@ module('Unit | Utility | detect-locale', function () {
   test('it works with Chinese locales', function (assert) {
     let detectedLocale = detectLocale({
       defaultLocale: 'en',
-      availableLocales: ['en', 'ko', 'zh_HK', 'jp'],
-      navigator: mockNavigator(['de-AT', 'zh_TW']),
+      availableLocales: ['en', 'ko', 'zh-HK', 'jp'],
+      navigator: mockNavigator(['de-AT', 'zh-TW']),
     });
 
-    assert.equal(detectedLocale, 'zh_HK');
+    assert.equal(detectedLocale, 'zh-HK');
   });
 
   test('it works with no detected locale', function (assert) {
