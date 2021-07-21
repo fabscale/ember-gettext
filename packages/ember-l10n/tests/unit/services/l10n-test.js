@@ -1,6 +1,8 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
-import L10nService from '@ember-gettext/ember-l10n/services/l10n';
+import L10nService, {
+  clearLocaleCache,
+} from '@ember-gettext/ember-l10n/services/l10n';
 import { mockLocale } from 'dummy/tests/helpers/mock-locale';
 
 module('Unit | Service | l10n', function (hooks) {
@@ -32,7 +34,11 @@ module('Unit | Service | l10n', function (hooks) {
     );
   });
 
-  module('locale loading', function () {
+  module('locale loading', function (hooks) {
+    hooks.beforeEach(function () {
+      clearLocaleCache();
+    });
+
     test('it works', async function (assert) {
       let l10n = this.owner.lookup('service:l10n');
 

@@ -13,6 +13,9 @@ import fetch from 'fetch';
 import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
 import { PluralFactory } from '@ember-gettext/ember-l10n/utils/plural-factory';
 
+// We cache locales - this is useful to avoid re-fetching the locale files e.g. in acceptance tests
+const LOCALE_CACHE = {};
+
 export default class L10nService extends Service {
   @tracked locale;
   @tracked l10nTranslations;
@@ -154,6 +157,12 @@ export default class L10nService extends Service {
   }
 
   async _loadLocaleFile(locale) {
+    if (LOCALE_CACHE[locale]) {
+      this.pluralFactory = new PluralFactory(locale);
+      this.l10nTranslations = LOCALE_CACHE[locale];
+      return;
+    }
+
     let localeData;
 
     let localePath = this._staticAssetMap[locale];
@@ -176,6 +185,8 @@ export default class L10nService extends Service {
 
     this.l10nTranslations = l10nTranslations;
     this.pluralFactory = new PluralFactory(locale);
+
+    LOCALE_CACHE[locale] = l10nTranslations;
   }
 
   async _fetch(localePath) {
@@ -188,5 +199,12 @@ export default class L10nService extends Service {
       `ember-l10n: Do not use the locale zh, as it is not a valid locale. Instead, use dedicated locales for traditional & simplified Chinese.`,
       !this.availableLocales.some((locale) => locale === 'zh')
     );
+  }
+}
+
+// This is mostly relevant for tests - normally you shouldn't have to ever use this
+export function clearLocaleCache() {
+  for (let k in LOCALE_CACHE) {
+    delete LOCALE_CACHE[k];
   }
 }
