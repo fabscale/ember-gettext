@@ -23,7 +23,7 @@
     "@babel/parser": "^7.14.9",
     "@glimmer/syntax": "^0.80.0",
     "ast-types": "^0.14.2",
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.2",
     "fs-extra": "^10.0.0",
     "gettext-parser": "^4.0.2",
     "glob": "^7.1.7"
