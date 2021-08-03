@@ -12,6 +12,9 @@ import {
 import fetch from 'fetch';
 import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
 import { PluralFactory } from '@ember-gettext/ember-l10n/utils/plural-factory';
+import { buildWaiter } from '@ember/test-waiters';
+
+const waiter = buildWaiter('ember-l10n:l10n');
 
 // We cache locales - this is useful to avoid re-fetching the locale files e.g. in acceptance tests
 const LOCALE_CACHE = {};
@@ -172,10 +175,13 @@ export default class L10nService extends Service {
       Boolean(localePath)
     );
 
+    let token = waiter.beginAsync();
+
     try {
       localeData = await this._fetch(localePath);
     } catch (error) {
       console.error(`ember-l10n: Error trying to fetch locale ${locale}`);
+      waiter.endAsync(token);
       throw error;
     }
 
@@ -187,6 +193,8 @@ export default class L10nService extends Service {
     this.pluralFactory = new PluralFactory(locale);
 
     LOCALE_CACHE[locale] = l10nTranslations;
+
+    waiter.endAsync(token);
   }
 
   async _fetch(localePath) {
