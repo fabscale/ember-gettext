@@ -1,3 +1,21 @@
+
+## v0.5.0 (2021-08-03)
+
+#### :rocket: Enhancement
+* `ember-l10n`
+  * [#47](https://github.com/fabscale/ember-gettext/pull/47) feat: Cache locale data to avoid repeated fetches ([@mydea](https://github.com/mydea))
+
+#### :house: Internal
+* `ember-l10n`
+  * [#56](https://github.com/fabscale/ember-gettext/pull/56) feat: Add test waiters to ensure everything is settled ([@mydea](https://github.com/mydea))
+  * [#55](https://github.com/fabscale/ember-gettext/pull/55) chore(deps-dev): bump @ember/test-helpers from 2.2.8 to 2.2.9 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `gettext-parser`
+  * [#48](https://github.com/fabscale/ember-gettext/pull/48) chore(deps): bump chalk from 4.1.1 to 4.1.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#52](https://github.com/fabscale/ember-gettext/pull/52) chore(deps): bump @babel/parser from 7.14.7 to 7.14.9 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.4.0 (2021-07-13)
 
 #### :boom: Breaking Change
