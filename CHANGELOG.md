@@ -1,4 +1,16 @@
 
+
+## v0.6.0 (2021-08-20)
+
+#### :house: Internal
+* `ember-l10n`
+  * [#63](https://github.com/fabscale/ember-gettext/pull/63) chore(deps): bump @ember/test-waiters from 2.4.5 to 3.0.0 ([@mydea](https://github.com/mydea))
+* `gettext-parser`
+  * [#58](https://github.com/fabscale/ember-gettext/pull/58) chore(deps): bump @babel/parser from 7.14.9 to 7.15.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.5.0 (2021-08-03)
 
 #### :rocket: Enhancement
