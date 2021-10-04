@@ -6,7 +6,7 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "https://github.com/fabscale/ember-gettext/packages/gettext-parser",
+  "repository": "https://github.com/fabscale/ember-gettext/tree/main/packages/gettext-parser",
   "license": "MIT",
   "author": "Francesco Novy <francesco@fabscale.com>",
   "directories": {
