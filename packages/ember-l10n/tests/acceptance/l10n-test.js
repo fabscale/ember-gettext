@@ -9,17 +9,17 @@ module('Acceptance | l10n', function (hooks) {
   test('it works', async function (assert) {
     await visit('/');
 
-    assert.equal(currentURL(), '/');
+    assert.strictEqual(currentURL(), '/');
 
     let l10n = this.owner.lookup('service:l10n');
 
-    assert.equal(l10n.locale, 'en', 'locale is en initially');
+    assert.strictEqual(l10n.locale, 'en', 'locale is en initially');
     assert.dom(document.documentElement).hasAttribute('lang', 'en');
     assert.dom('[data-test-message]').hasText('Hello world!');
 
     await click('[data-test-locale-de]');
 
-    assert.equal(l10n.locale, 'de', 'locale is de');
+    assert.strictEqual(l10n.locale, 'de', 'locale is de');
     assert.dom(document.documentElement).hasAttribute('lang', 'de');
     assert.dom('[data-test-message]').hasText('Hallo Welt!');
   });

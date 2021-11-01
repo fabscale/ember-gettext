@@ -16,14 +16,14 @@ module('Unit | Service | l10n', function (hooks) {
   test('it works without a locale loaded', async function (assert) {
     let l10n = this.owner.lookup('service:l10n');
 
-    assert.equal(l10n.locale, 'en', 'locale is correct');
+    assert.strictEqual(l10n.locale, 'en', 'locale is correct');
 
-    assert.equal(l10n.t('test thingy'), 'test thingy');
-    assert.equal(
+    assert.strictEqual(l10n.t('test thingy'), 'test thingy');
+    assert.strictEqual(
       l10n.t('My name is {{name}}.', { name: 'john doe' }),
       'My name is john doe.'
     );
-    assert.equal(
+    assert.strictEqual(
       l10n.n(
         'My name is {{name}} {{count}}.',
         'my names are {{name}} {{count}}.',
@@ -44,14 +44,14 @@ module('Unit | Service | l10n', function (hooks) {
 
       await l10n.setLocale('en');
 
-      assert.equal(l10n.locale, 'en', 'locale is correct');
+      assert.strictEqual(l10n.locale, 'en', 'locale is correct');
 
-      assert.equal(l10n.t('test thingy'), 'test thingy');
-      assert.equal(
+      assert.strictEqual(l10n.t('test thingy'), 'test thingy');
+      assert.strictEqual(
         l10n.t('My name is {{name}}.', { name: 'john doe' }),
         'My name is john doe.'
       );
-      assert.equal(
+      assert.strictEqual(
         l10n.n(
           'My name is {{name}} {{count}}.',
           'my names are {{name}} {{count}}.',
@@ -63,14 +63,14 @@ module('Unit | Service | l10n', function (hooks) {
 
       await l10n.setLocale('de');
 
-      assert.equal(l10n.locale, 'de', 'locale is correct');
+      assert.strictEqual(l10n.locale, 'de', 'locale is correct');
 
-      assert.equal(l10n.t('test thingy'), 'test thingy');
-      assert.equal(
+      assert.strictEqual(l10n.t('test thingy'), 'test thingy');
+      assert.strictEqual(
         l10n.t('My name is {{name}}.', { name: 'john doe' }),
         'Mein Name ist john doe.'
       );
-      assert.equal(
+      assert.strictEqual(
         l10n.n(
           'My name is {{name}} {{count}}.',
           'my names are {{name}} {{count}}.',
@@ -83,9 +83,9 @@ module('Unit | Service | l10n', function (hooks) {
       // Change back
       await l10n.setLocale('en');
 
-      assert.equal(l10n.locale, 'en', 'locale is correct');
+      assert.strictEqual(l10n.locale, 'en', 'locale is correct');
 
-      assert.equal(
+      assert.strictEqual(
         l10n.t('My name is {{name}}.', { name: 'john doe' }),
         'My name is john doe.'
       );
@@ -96,18 +96,18 @@ module('Unit | Service | l10n', function (hooks) {
 
       let promise = l10n.setLocale('ko');
 
-      assert.equal(l10n.locale, 'en', 'locale is not yet updated');
+      assert.strictEqual(l10n.locale, 'en', 'locale is not yet updated');
 
-      assert.equal(
+      assert.strictEqual(
         l10n.t('My name is {{name}}.', { name: 'john doe' }),
         'My name is john doe.'
       );
 
       await promise;
 
-      assert.equal(l10n.locale, 'ko', 'locale is updated');
+      assert.strictEqual(l10n.locale, 'ko', 'locale is updated');
 
-      assert.equal(
+      assert.strictEqual(
         l10n.t('My name is {{name}}.', { name: 'john doe' }),
         '내 이름은 john doe.'
       );
@@ -125,14 +125,14 @@ module('Unit | Service | l10n', function (hooks) {
         await l10n.setLocale('de');
       } catch (error) {
         assert.step('error is thrown');
-        assert.equal(
+        assert.strictEqual(
           error.message,
           'Assertion Failed: ember-l10n: Cannot find locale file path for locale "de"',
           'error is correct'
         );
       }
 
-      assert.equal(l10n.locale, 'en', 'locale is not updated');
+      assert.strictEqual(l10n.locale, 'en', 'locale is not updated');
 
       assert.verifySteps(['error is thrown']);
     });
@@ -151,14 +151,14 @@ module('Unit | Service | l10n', function (hooks) {
         await l10n.setLocale('de');
       } catch (error) {
         assert.step('error is thrown');
-        assert.equal(
+        assert.strictEqual(
           error.message,
           'TEST error cannot load /assets/locales/de.json',
           'error is correct'
         );
       }
 
-      assert.equal(l10n.locale, 'en', 'locale is not updated');
+      assert.strictEqual(l10n.locale, 'en', 'locale is not updated');
 
       assert.verifySteps(['error is thrown']);
     });
@@ -173,9 +173,9 @@ module('Unit | Service | l10n', function (hooks) {
     });
     mockLocale(l10n, { 'test thingy': 'test 2' }, 'test context');
 
-    assert.equal(l10n.t('test thingy'), 'test 1');
-    assert.equal(l10n.t('test thingy', {}, 'test context'), 'test 2');
-    assert.equal(
+    assert.strictEqual(l10n.t('test thingy'), 'test 1');
+    assert.strictEqual(l10n.t('test thingy', {}, 'test context'), 'test 2');
+    assert.strictEqual(
       l10n.t('My name is {{name}}.', { name: 'john doe' }),
       'Mein Name ist john doe.'
     );
@@ -190,9 +190,9 @@ module('Unit | Service | l10n', function (hooks) {
     });
     mockLocale(l10n, { 'test thingy': 'test 2' }, 'test context');
 
-    assert.equal(l10n.tVar('test thingy'), 'test 1');
-    assert.equal(l10n.tVar('test thingy', {}, 'test context'), 'test 2');
-    assert.equal(
+    assert.strictEqual(l10n.tVar('test thingy'), 'test 1');
+    assert.strictEqual(l10n.tVar('test thingy', {}, 'test context'), 'test 2');
+    assert.strictEqual(
       l10n.tVar('My name is {{name}}.', { name: 'john doe' }),
       'Mein Name ist john doe.'
     );
@@ -218,7 +218,7 @@ module('Unit | Service | l10n', function (hooks) {
       'test context'
     );
 
-    assert.equal(
+    assert.strictEqual(
       l10n.n(
         'My name is {{name}} {{count}}.',
         'my names are {{name}} {{count}}.',
@@ -228,7 +228,7 @@ module('Unit | Service | l10n', function (hooks) {
       'Mein Name ist john doe 1.'
     );
 
-    assert.equal(
+    assert.strictEqual(
       l10n.n(
         'My name is {{name}} {{count}}.',
         'my names are {{name}} {{count}}.',
@@ -260,7 +260,7 @@ module('Unit | Service | l10n', function (hooks) {
       'test context'
     );
 
-    assert.equal(
+    assert.strictEqual(
       l10n.nVar(
         'My name is {{name}} {{count}}.',
         'my names are {{name}} {{count}}.',
@@ -270,7 +270,7 @@ module('Unit | Service | l10n', function (hooks) {
       'Mein Name ist john doe 1.'
     );
 
-    assert.equal(
+    assert.strictEqual(
       l10n.nVar(
         'My name is {{name}} {{count}}.',
         'my names are {{name}} {{count}}.',
@@ -297,17 +297,17 @@ module('Unit | Service | l10n', function (hooks) {
         { locale: 'de' }
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
         'Ich habe 0 Punkte.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
         'Ich habe 1 Punkt.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
         'Ich habe 2 Punkte.'
       );
@@ -325,17 +325,17 @@ module('Unit | Service | l10n', function (hooks) {
         { locale: 'de' }
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
         'I have 0 points.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
         'I have 1 point.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
         'I have 2 points.'
       );
@@ -353,17 +353,17 @@ module('Unit | Service | l10n', function (hooks) {
         { locale: 'ko' }
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
         'XXX YYY 0.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
         'XXX YYY 1.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
         'XXX YYY 2.'
       );
@@ -381,17 +381,17 @@ module('Unit | Service | l10n', function (hooks) {
         { locale: 'ko' }
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 0),
         'I have 0 points.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 1),
         'I have 1 point.'
       );
 
-      assert.equal(
+      assert.strictEqual(
         l10n.n('I have {{count}} point.', 'I have {{count}} points.', 2),
         'I have 2 points.'
       );
@@ -409,13 +409,22 @@ module('Unit | Service | l10n', function (hooks) {
         { locale: 'ar-eg' }
       );
 
-      assert.equal(l10n.n('{{count}} item', '{{count}} items', 0), 'zero');
-      assert.equal(l10n.n('{{count}} item', '{{count}} items', 1), 'one');
-      assert.equal(l10n.n('{{count}} item', '{{count}} items', 2), 'two');
-      assert.equal(l10n.n('{{count}} item', '{{count}} items', 4), 'few');
-      assert.equal(l10n.n('{{count}} item', '{{count}} items', 8), 'few');
-      assert.equal(l10n.n('{{count}} item', '{{count}} items', 15), 'many');
-      assert.equal(l10n.n('{{count}} item', '{{count}} items', 100), 'other');
+      assert.strictEqual(
+        l10n.n('{{count}} item', '{{count}} items', 0),
+        'zero'
+      );
+      assert.strictEqual(l10n.n('{{count}} item', '{{count}} items', 1), 'one');
+      assert.strictEqual(l10n.n('{{count}} item', '{{count}} items', 2), 'two');
+      assert.strictEqual(l10n.n('{{count}} item', '{{count}} items', 4), 'few');
+      assert.strictEqual(l10n.n('{{count}} item', '{{count}} items', 8), 'few');
+      assert.strictEqual(
+        l10n.n('{{count}} item', '{{count}} items', 15),
+        'many'
+      );
+      assert.strictEqual(
+        l10n.n('{{count}} item', '{{count}} items', 100),
+        'other'
+      );
     });
 
     test('it asserts if trying to use missing plural form (de)', async function (assert) {

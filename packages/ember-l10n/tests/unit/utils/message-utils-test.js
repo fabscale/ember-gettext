@@ -10,7 +10,7 @@ module('Unit | Utility | message-utils', function () {
     test('it works without placeholders', function (assert) {
       let result = replacePlaceholders('my message', {});
 
-      assert.equal(result, 'my message');
+      assert.strictEqual(result, 'my message');
     });
 
     test('it works with placeholders', function (assert) {
@@ -18,7 +18,7 @@ module('Unit | Utility | message-utils', function () {
         message: 'hello there!',
       });
 
-      assert.equal(result, 'my message: hello there!');
+      assert.strictEqual(result, 'my message: hello there!');
     });
 
     test('it works with empty string placeholders', function (assert) {
@@ -26,7 +26,7 @@ module('Unit | Utility | message-utils', function () {
         message: '',
       });
 
-      assert.equal(result, 'my message: ');
+      assert.strictEqual(result, 'my message: ');
     });
 
     test('it works with multiple placeholders', function (assert) {
@@ -38,7 +38,7 @@ module('Unit | Utility | message-utils', function () {
         }
       );
 
-      assert.equal(result, 'my message: test1, test2 and test1');
+      assert.strictEqual(result, 'my message: test1, test2 and test1');
     });
 
     test('it works with whitespace in placeholders', function (assert) {
@@ -46,7 +46,7 @@ module('Unit | Utility | message-utils', function () {
         message: 'test1',
       });
 
-      assert.equal(result, 'my message: test1');
+      assert.strictEqual(result, 'my message: test1');
     });
   });
 
@@ -54,14 +54,14 @@ module('Unit | Utility | message-utils', function () {
     test('it works with a simple id', function (assert) {
       let result = sanitizeMessageId('hello there!');
 
-      assert.equal(result, 'hello there!');
+      assert.strictEqual(result, 'hello there!');
     });
 
     test('it normalizes whitespace', function (assert) {
       let result = sanitizeMessageId(`  hello  there!  what is it?
       that's kind of a lot...  `);
 
-      assert.equal(
+      assert.strictEqual(
         result,
         ` hello there! what is it? that's kind of a lot... `
       );
