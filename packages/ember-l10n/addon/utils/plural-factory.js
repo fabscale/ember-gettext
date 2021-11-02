@@ -1,5 +1,9 @@
 const PLURAL_FORMS = ['zero', 'one', 'two', 'few', 'many', 'other'];
 
+const ALIAS_LOCALES = {
+  fr: 'pt',
+};
+
 export class PluralFactory {
   locale;
   pluralRules;
@@ -7,7 +11,10 @@ export class PluralFactory {
 
   constructor(locale) {
     this.locale = locale;
-    this.pluralRules = new Intl.PluralRules(locale);
+
+    let aliasLocale = ALIAS_LOCALES[locale];
+
+    this.pluralRules = new Intl.PluralRules(aliasLocale || locale);
 
     // We want to ensure a stable sorting
     // As this could be in any order, but gettext will try to keep a stable ordering from few->many

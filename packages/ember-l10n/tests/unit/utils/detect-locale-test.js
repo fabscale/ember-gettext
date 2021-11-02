@@ -15,7 +15,7 @@ module('Unit | Utility | detect-locale', function () {
       navigator: undefined,
     });
 
-    assert.equal(detectedLocale, 'en');
+    assert.strictEqual(detectedLocale, 'en');
   });
 
   test('it works with basic locales', function (assert) {
@@ -25,7 +25,7 @@ module('Unit | Utility | detect-locale', function () {
       navigator: mockNavigator(['de-AT', 'de-DE', 'en']),
     });
 
-    assert.equal(detectedLocale, 'de');
+    assert.strictEqual(detectedLocale, 'de');
   });
 
   test('it works with non-normalized locales', function (assert) {
@@ -35,7 +35,7 @@ module('Unit | Utility | detect-locale', function () {
       navigator: mockNavigator(['de-AT']),
     });
 
-    assert.equal(detectedLocale, 'de');
+    assert.strictEqual(detectedLocale, 'de');
   });
 
   test('it works with no matching locale', function (assert) {
@@ -45,7 +45,7 @@ module('Unit | Utility | detect-locale', function () {
       navigator: mockNavigator(['fr', 'jp']),
     });
 
-    assert.equal(detectedLocale, 'en');
+    assert.strictEqual(detectedLocale, 'en');
   });
 
   test('it works with Chinese locales', function (assert) {
@@ -55,7 +55,7 @@ module('Unit | Utility | detect-locale', function () {
       navigator: mockNavigator(['de-AT', 'zh-TW']),
     });
 
-    assert.equal(detectedLocale, 'zh-HK');
+    assert.strictEqual(detectedLocale, 'zh-HK');
   });
 
   test('it works with no detected locale', function (assert) {
@@ -65,6 +65,6 @@ module('Unit | Utility | detect-locale', function () {
       navigator: mockNavigator([]),
     });
 
-    assert.equal(detectedLocale, 'en');
+    assert.strictEqual(detectedLocale, 'en');
   });
 });

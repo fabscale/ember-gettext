@@ -1,6 +1,14 @@
 const PLURAL_FORMS = ['zero', 'one', 'two', 'few', 'many', 'other'];
 
+const ALIAS_LOCALES = {
+  fr: 'pt',
+};
+
 function validatePluralFormFormat(pluralForm, locale) {
+  if (ALIAS_LOCALES[locale]) {
+    locale = ALIAS_LOCALES[locale];
+  }
+
   let pluralRules = new Intl.PluralRules(locale);
   let { pluralCategories, locale: parsedLocale } =
     pluralRules.resolvedOptions();
@@ -23,28 +31,74 @@ function validatePluralFormFormat(pluralForm, locale) {
 
   // PO only accounts for positive numbers, so we do not check negative ones
   for (let i = 0; i <= 10000; i++) {
-    let pos = parsedPluralFactory(i);
+    checkNumber(
+      i,
+      usedCategories,
+      pluralRules,
+      pluralForm,
+      parsedPluralFactory,
+      sortedPluralCategories
+    );
+  }
 
-    let parsedCategory = sortedPluralCategories[pos];
-    let category = pluralRules.select(i);
+  // Check some manual higher numbers as well
+  checkNumber(
+    100000,
+    usedCategories,
+    pluralRules,
+    pluralForm,
+    parsedPluralFactory,
+    sortedPluralCategories
+  );
 
-    if (typeof parsedCategory === 'undefined') {
-      throw new Error(
-        `plural-form header does not match Intl.PluralRules(). It is "${pluralForm}", which does not map to ${JSON.stringify(
-          sortedPluralCategories
-        )}`
-      );
-    }
+  checkNumber(
+    1000000,
+    usedCategories,
+    pluralRules,
+    pluralForm,
+    parsedPluralFactory,
+    sortedPluralCategories
+  );
 
-    if (category !== parsedCategory) {
-      throw new Error(
-        `plural-form header does not match Intl.PluralRules(). Parsed plural for ${i} is ${parsedCategory}, but should be ${category}`
-      );
-    }
+  checkNumber(
+    10000000,
+    usedCategories,
+    pluralRules,
+    pluralForm,
+    parsedPluralFactory,
+    sortedPluralCategories
+  );
+}
 
-    if (!usedCategories.includes(parsedCategory)) {
-      usedCategories.push(parsedCategory);
-    }
+function checkNumber(
+  i,
+  usedCategories,
+  pluralRules,
+  pluralForm,
+  parsedPluralFactory,
+  sortedPluralCategories
+) {
+  let pos = parsedPluralFactory(i);
+
+  let parsedCategory = sortedPluralCategories[pos];
+  let category = pluralRules.select(i);
+
+  if (typeof parsedCategory === 'undefined') {
+    throw new Error(
+      `plural-form header does not match Intl.PluralRules(). It is "${pluralForm}", which does not map to ${JSON.stringify(
+        sortedPluralCategories
+      )}`
+    );
+  }
+
+  if (category !== parsedCategory) {
+    throw new Error(
+      `plural-form header does not match Intl.PluralRules(). Parsed plural for ${i} is ${parsedCategory}, but should be ${category}`
+    );
+  }
+
+  if (!usedCategories.includes(parsedCategory)) {
+    usedCategories.push(parsedCategory);
   }
 }
 

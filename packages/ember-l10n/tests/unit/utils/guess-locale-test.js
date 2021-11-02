@@ -9,7 +9,7 @@ module('Unit | Utility | guess-locale', function () {
       desiredLocales: ['en'],
     });
 
-    assert.equal(guessedLocale, 'en');
+    assert.strictEqual(guessedLocale, 'en');
   });
 
   test('it detects sub-locales of base locale', function (assert) {
@@ -19,7 +19,7 @@ module('Unit | Utility | guess-locale', function () {
       desiredLocales: ['en-US'],
     });
 
-    assert.equal(guessedLocale, 'en');
+    assert.strictEqual(guessedLocale, 'en');
   });
 
   test('it detects sub-locales of other locale', function (assert) {
@@ -29,7 +29,7 @@ module('Unit | Utility | guess-locale', function () {
       desiredLocales: ['de-AT'],
     });
 
-    assert.equal(guessedLocale, 'de');
+    assert.strictEqual(guessedLocale, 'de');
   });
 
   test('it detects sub-locales if allowed', function (assert) {
@@ -39,7 +39,7 @@ module('Unit | Utility | guess-locale', function () {
       desiredLocales: ['de-DE', 'de-AT'],
     });
 
-    assert.equal(guessedLocale, 'de-AT');
+    assert.strictEqual(guessedLocale, 'de-AT');
   });
 
   test('it works with multiple locales', function (assert) {
@@ -49,7 +49,7 @@ module('Unit | Utility | guess-locale', function () {
       desiredLocales: ['fr', 'de-AT'],
     });
 
-    assert.equal(guessedLocale, 'de');
+    assert.strictEqual(guessedLocale, 'de');
   });
 
   test('it works with no desired locale', function (assert) {
@@ -59,7 +59,7 @@ module('Unit | Utility | guess-locale', function () {
       desiredLocales: [],
     });
 
-    assert.equal(guessedLocale, 'de');
+    assert.strictEqual(guessedLocale, 'de');
   });
 
   test('it normalizes desired locales', function (assert) {
@@ -69,7 +69,7 @@ module('Unit | Utility | guess-locale', function () {
       desiredLocales: ['fr', 'de-AT'],
     });
 
-    assert.equal(guessedLocale, 'de-AT');
+    assert.strictEqual(guessedLocale, 'de-AT');
   });
 
   module('simplified Chinese locales', function () {
@@ -81,7 +81,7 @@ module('Unit | Utility | guess-locale', function () {
           desiredLocales: ['fr', locale],
         });
 
-        assert.equal(guessedLocale, 'zh-CN');
+        assert.strictEqual(guessedLocale, 'zh-CN');
       });
     });
   });
@@ -95,7 +95,7 @@ module('Unit | Utility | guess-locale', function () {
           desiredLocales: ['fr', locale],
         });
 
-        assert.equal(guessedLocale, 'zh-HK');
+        assert.strictEqual(guessedLocale, 'zh-HK');
       });
     });
   });
