@@ -1,5 +1,22 @@
 
 
+
+## v0.7.0 (2021-11-02)
+
+#### :house: Internal
+* `gettext-parser`
+  * [#79](https://github.com/fabscale/ember-gettext/pull/79) chore(deps): bump @glimmer/syntax from 0.81.0 to 0.82.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#81](https://github.com/fabscale/ember-gettext/pull/81) chore(deps): bump @babel/parser from 7.15.3 to 7.16.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `ember-l10n`
+  * [#86](https://github.com/fabscale/ember-gettext/pull/86) chore(deps): bump ember-cli-htmlbars from 5.7.1 to 6.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#76](https://github.com/fabscale/ember-gettext/pull/76) Update dev dependencies ([@mydea](https://github.com/mydea))
+* `ember-l10n`, `gettext-parser`
+  * [#75](https://github.com/fabscale/ember-gettext/pull/75) Fix canary builds by adding ember-auto-import dev dependency ([@mydea](https://github.com/mydea))
+  * [#64](https://github.com/fabscale/ember-gettext/pull/64) chore(deps-dev): bump ember-cli from 3.27.0 to 3.28.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.6.0 (2021-08-20)
 
 #### :house: Internal
