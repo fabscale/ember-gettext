@@ -180,6 +180,7 @@ export default class L10nService extends Service {
     try {
       localeData = await this._fetch(localePath);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(`ember-l10n: Error trying to fetch locale ${locale}`);
       waiter.endAsync(token);
       throw error;

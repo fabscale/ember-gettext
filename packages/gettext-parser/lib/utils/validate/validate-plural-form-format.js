@@ -119,7 +119,7 @@ function setupPluralFactory(pluralForm) {
     pluralExpression = m[2];
   }
 
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line unused-imports/no-unused-vars
   return (n) => {
     let pluralPos = eval(pluralExpression);
 
