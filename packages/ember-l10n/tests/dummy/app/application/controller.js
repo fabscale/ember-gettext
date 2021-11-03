@@ -16,6 +16,8 @@ export default class ApplicationController extends Controller {
   @action
   async selectLocale(locale) {
     await this.l10n.setLocale(locale);
+
+    /* eslint-disable no-console */
     console.log('locale set', this.l10n.locale);
 
     console.log(this.l10n.t('test thingy'));

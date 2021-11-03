@@ -1,56 +1,25 @@
-'use strict';
+/* eslint-disable node/no-extraneous-require */
 
 module.exports = {
-  root: false,
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
-    },
-  },
-  plugins: ['ember'],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:prettier/recommended',
-  ],
-  env: {
-    browser: true,
-  },
-  rules: {},
+  root: true,
+  ...require('fabscale-eslint-config/lib/ember'),
+
   overrides: [
     // node files
     {
       files: [
-        './.eslintrc.js',
-        './.prettierrc.js',
-        './.template-lintrc.js',
-        './ember-cli-build.js',
-        './index.js',
-        './testem.js',
+        './*.js',
         './blueprints/*/index.js',
         './config/**/*.js',
+        './lib/**/*.js',
         './tests/dummy/config/**/*.js',
       ],
-      parserOptions: {
-        sourceType: 'script',
-      },
-      env: {
-        browser: false,
-        node: true,
-      },
-      plugins: ['node'],
-      extends: ['plugin:node/recommended'],
+      ...require('fabscale-eslint-config/lib/node'),
     },
     {
-      // Test files:
+      // test files:
       files: ['tests/**/*-test.{js,ts}'],
-      extends: ['plugin:qunit/recommended'],
-      rules: {
-        'qunit/require-expect': 0,
-      },
+      ...require('fabscale-eslint-config/lib/ember-tests'),
     },
   ],
 };
