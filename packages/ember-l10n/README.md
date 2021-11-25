@@ -8,6 +8,7 @@ In the ember-l10n workflow, you use the `t`, and `n` helpers and `l10n.t()` / `l
 
 ## Compatibility
 
+- **Embroider only!!**
 - Ember.js v3.25 or above
 - Ember CLI v3.20 or above
 - Node.js v12 or above
