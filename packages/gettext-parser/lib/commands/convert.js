@@ -4,6 +4,7 @@ const path = require('path');
 const gettextParser = require('gettext-parser');
 const { processJSON } = require('./../utils/process-json');
 const { validate } = require('./../utils/validate-json');
+const generateMap = require('./../utils/generate-map');
 
 module.exports = {
   name: 'gettext:convert',
@@ -22,15 +23,16 @@ module.exports = {
       name: 'output-dir',
       type: String,
       aliases: ['o'],
-      default: './translations',
+      default: './app/locales',
       description: 'Output directory where to store the generated .json file',
     },
     {
       name: 'locale',
       type: String,
       aliases: ['l'],
-      default: 'en',
-      description: 'Locale of the .po file to convert.',
+      default: undefined,
+      description:
+        'Locale of the .po file to convert. If none is given, converts all locales.',
     },
     {
       name: 'input-file',
@@ -40,12 +42,58 @@ module.exports = {
       description:
         'Optional full path of a .po file to convert - if given, takes precedent over input-dir',
     },
+    {
+      name: 'generate-map',
+      type: Boolean,
+      aliases: ['m'],
+      default: true,
+      description: 'If the import map should be generated for all locales',
+    },
   ],
 
   async run(options) {
-    let { inputDir, outputDir, locale, inputFile } = options;
+    let {
+      inputDir,
+      outputDir,
+      locale,
+      inputFile,
+      generateMap: shouldGenerateMap,
+    } = options;
 
-    let fullInputPath = inputFile || path.join(inputDir, `${locale}.po`);
+    if (locale) {
+      let fullInputPath = inputFile || path.join(inputDir, `${locale}.po`);
+
+      await this.convertLocale({ locale, fullInputPath, outputDir });
+    } else {
+      // Else, iterate over all locale files
+      this.ui.writeLine(chalk.bold('Converting all locales...'));
+      let localeFiles = fs.readdirSync(inputDir);
+
+      for (let localeFile of localeFiles) {
+        if (!localeFile.endsWith('.po')) {
+          continue;
+        }
+
+        this.ui.writeLine(`\n\n > Found locale file: ${localeFile}`);
+
+        let locale = localeFile.replace('.po', '');
+        let fullInputPath = path.join(inputDir, localeFile);
+        await this.convertLocale({ locale, fullInputPath, outputDir });
+      }
+    }
+
+    if (shouldGenerateMap) {
+      let mapFile = generateMap(outputDir);
+
+      this.ui.writeLine(
+        chalk.green.bold(
+          `\n\nMap file was successfully generated at ${mapFile} ✔`
+        )
+      );
+    }
+  },
+
+  async convertLocale({ outputDir, locale, fullInputPath }) {
     let fullOutputPath = path.join(outputDir, `${locale}.json`);
 
     if (!fs.existsSync(fullInputPath)) {
@@ -85,15 +133,16 @@ module.exports = {
     if (validationErrors.some((error) => error.level === 'ERROR')) {
       this.ui.writeLine(
         chalk.red(
-          '\n\nValidation of JSON was not successful - .json file was not generated.'
+          '\n\nValidation of JSON was not successful - .js file was not generated.'
         )
       );
       return;
     }
 
-    let strData = JSON.stringify(poFileJson, null, 2);
+    let fileContent = JSON.stringify(poFileJson, null, 2);
+
     await fs.ensureFile(fullOutputPath);
-    await fs.writeFile(fullOutputPath, strData, 'utf8');
+    await fs.writeFile(fullOutputPath, fileContent, 'utf8');
 
     this.ui.writeLine(
       chalk.green.bold(`\n\n${fullOutputPath} was successfully generated ✔`)

@@ -15,7 +15,9 @@
   },
   "scripts": {
     "test:node": "node node-tests/index.js",
-    "run-extract": "ember gettext:extract -i node-tests/fixtures/test-app",
+    "extract": "ember gettext:extract -i node-tests/fixtures/test-app",
+    "convert": "ember gettext:convert -o ./translations-json",
+    "generate-map": "ember gettext:generate-map -d ./translations-json",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix"
   },

@@ -4,3 +4,4 @@ dist
 .eslintcache
 translations
 node-tests/fixtures
+translations-json

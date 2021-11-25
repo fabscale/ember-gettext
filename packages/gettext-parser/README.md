@@ -51,6 +51,38 @@ You can use these configuration options:
 
 You can convert translated `.po` files with `ember gettext:convert`. Use `ember help gettext:convert` to see all available options.
 
-It will look for a file named `<locale>.po` in your `./translations` directory and convert it into `<locale>.json` in the same directory.
+It will look for a file named `<locale>.po` in your `./translations` directory and convert it into `<locale>.json` in the output directory (default: `app/locales/<locale>.json`).
 
-For example, if you receive a German translation of your app, you should save this file under `./translations/de.po`. Then, you would run `ember gettext:convert --locale=de`, which will generate the file `./translations/de.json` which can be used by ember-l10n.
+For example, if you receive a German translation of your app, you should save this file under `./translations/de.po`. Then, you would run `ember gettext:convert --locale=de`, which will generate the file `./app/locales/de.json` which can be used by ember-l10n.
+
+Alternatively, you can also leave the `--locale` away, to convert all locale.po files.
+
+Available options:
+
+```
+# Use different input directory
+--input-dir ./translations
+
+# Use different output directory
+--output-dir ./app/locales
+
+# Convert this locale (or all, if empty)
+--locale de
+
+# Convert this specific file (provide full path, takes precedence over input-dir)
+--input-file ./my-path/file.po
+
+# Generate/update the locale map. Set to false to skip this step
+--generate-map false
+```
+
+### Generate map
+
+You can manually generate the map for locale imports with `ember gettext:generate-map`. This takes a single optional argument:
+
+```
+# Generate for this directory
+--locale-dir ./app/loclaes
+```
+
+By default, this will be run whenever you convert a file, but you can also run it manually.

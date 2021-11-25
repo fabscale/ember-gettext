@@ -9,15 +9,11 @@ import {
   getMessages,
   getPluralMessage,
 } from '@ember-gettext/ember-l10n/utils/message-utils';
-import fetch from 'fetch';
 import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
 import { PluralFactory } from '@ember-gettext/ember-l10n/utils/plural-factory';
 import { buildWaiter } from '@ember/test-waiters';
 
 const waiter = buildWaiter('ember-l10n:l10n');
-
-// We cache locales - this is useful to avoid re-fetching the locale files e.g. in acceptance tests
-const LOCALE_CACHE = {};
 
 export default class L10nService extends Service {
   @tracked locale;
@@ -29,11 +25,17 @@ export default class L10nService extends Service {
   availableLocales = ['en'];
   defaultPluralFactory;
 
-  // This will be replaced at build time via a babel plugin with the actual asset map
-  _staticAssetMap;
+  localeLoadingMap;
 
   constructor() {
     super(...arguments);
+
+    this.localeLoadingMap = getOwner(this).lookup('ember-l10n:locales');
+    assert(
+      `It seems the locale map could not be loaded. 
+Please run \`ember generate ember-l10n\` once to create the required boilerplate.`,
+      this.localeLoadingMap
+    );
 
     let config = getOwner(this).resolveRegistration('config:environment');
     let l10nConfig = config['@ember-gettext/ember-l10n'];
@@ -122,7 +124,7 @@ export default class L10nService extends Service {
       this.availableLocales.includes(locale)
     );
 
-    await this._loadLocaleFile(locale);
+    await this._loadLocale(locale);
 
     this.locale = locale;
 
@@ -159,26 +161,20 @@ export default class L10nService extends Service {
     }
   }
 
-  async _loadLocaleFile(locale) {
-    if (LOCALE_CACHE[locale]) {
-      this.pluralFactory = new PluralFactory(locale);
-      this.l10nTranslations = LOCALE_CACHE[locale];
-      return;
-    }
-
+  async _loadLocale(locale) {
     let localeData;
 
-    let localePath = this._staticAssetMap[locale];
+    let loadFn = this.localeLoadingMap[locale];
 
     assert(
-      `ember-l10n: Cannot find locale file path for locale "${locale}"`,
-      Boolean(localePath)
+      `ember-l10n: Cannot find locale file for locale "${locale}"`,
+      Boolean(loadFn)
     );
 
     let token = waiter.beginAsync();
 
     try {
-      localeData = await this._fetch(localePath);
+      localeData = await loadFn();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(`ember-l10n: Error trying to fetch locale ${locale}`);
@@ -193,14 +189,7 @@ export default class L10nService extends Service {
     this.l10nTranslations = l10nTranslations;
     this.pluralFactory = new PluralFactory(locale);
 
-    LOCALE_CACHE[locale] = l10nTranslations;
-
     waiter.endAsync(token);
-  }
-
-  async _fetch(localePath) {
-    let response = await fetch(localePath);
-    return response.json();
   }
 
   _validateLocales() {
@@ -208,12 +197,5 @@ export default class L10nService extends Service {
       `ember-l10n: Do not use the locale zh, as it is not a valid locale. Instead, use dedicated locales for traditional & simplified Chinese.`,
       !this.availableLocales.some((locale) => locale === 'zh')
     );
-  }
-}
-
-// This is mostly relevant for tests - normally you shouldn't have to ever use this
-export function clearLocaleCache() {
-  for (let k in LOCALE_CACHE) {
-    delete LOCALE_CACHE[k];
   }
 }

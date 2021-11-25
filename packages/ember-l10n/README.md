@@ -13,6 +13,8 @@ In the ember-l10n workflow, you use the `t`, and `n` helpers and `l10n.t()` / `l
 - Ember CLI v3.20 or above
 - Node.js v12 or above
 
+This addon is optimized for Embroider. It is probably possible to also use it without Embroider, but you'll need to adjust the generated import map yourself.
+
 ## Installation
 
 ```
@@ -34,9 +36,18 @@ let ENV = {
 };
 ```
 
+In order to ensure the locales are lazy loaded, you'll need to add this to your `ember-cli-build.js` file:
+
+```js
+return require('@embroider/compat').compatBuild(app, Webpack, {
+  // Ensure `locales` are considered static & lazy loaded
+  staticAppPaths: ['locales'],
+});
+```
+
 ## Usage
 
-Translations are provided as `.json` files under `/translations`, e.g. `/translations/de.json`.
+Translations are provided as `.json` files under `/app/locales`, e.g. `/app/locales/de.json`.
 They can be generated with the separate parser addon.
 
 To use translations in your app, you can use either the provided helpers, a contextual component or a service:
@@ -181,11 +192,7 @@ will be available as `{{text}}` to the named block.
 
 Locale files can be generated with [gettext-parser](./../gettext-parser).
 
-ember-l10n expects properly formatted .json files (e.g. `de.json`, `en.json`) in the `./translations` folder of your app.
-These files will be automatically be moved to `assets/locales` at build time, e.g. `assets/locales/en.json`.
-
-You will have to make sure to either let them be fingerprinted (which happens automatically by broccoli-asset-rev)
-or otherwise handle cache invalidation of these files yourself.
+ember-l10n expects properly formatted .json files (e.g. `de.json`, `en.json`) , by default in the `./app.locales` folder of your app.
 
 ### Locale detection
 
@@ -204,6 +211,10 @@ export default class ApplicationRoute extends Route {
 ```
 
 This will pick the first matching locale from the available locales for you.
+
+## Updating from older versions
+
+When updating from versions before 1.x, please run `ember generate ember-l10n` once to generate the required boilerplate files for you.
 
 ## Contributing
 
