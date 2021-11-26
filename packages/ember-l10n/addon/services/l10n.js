@@ -36,6 +36,13 @@ export default class L10nService extends Service {
 Please run \`ember generate ember-l10n\` once to create the required boilerplate.`,
       this.localeLoadingMap
     );
+    assert(
+      `There are no locales defined in the locale map.
+Probably you have not extracted and converted locales yet with @ember-gettext/gettext-parser.
+Install this addon, and run \`ember gettext:extract\` to extract translations, 
+and then run \`ember gettext:convert\` to convert your .po files into usable locale files.`,
+      Object.keys(this.localeLoadingMap).length > 0
+    );
 
     let config = getOwner(this).resolveRegistration('config:environment');
     let l10nConfig = config['@ember-gettext/ember-l10n'];
