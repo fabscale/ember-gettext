@@ -1,6 +1,20 @@
 
 
 
+
+## v0.8.0 (2021-11-26)
+
+#### :boom: Breaking Change
+* `ember-l10n`, `gettext-parser`
+  * [#90](https://github.com/fabscale/ember-gettext/pull/90) Update locale import to be more Embroider compatible ([@mydea](https://github.com/mydea))
+
+#### :rocket: Enhancement
+* `ember-l10n`, `gettext-parser`
+  * [#90](https://github.com/fabscale/ember-gettext/pull/90) Update locale import to be more Embroider compatible ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.7.0 (2021-11-02)
 
 #### :house: Internal
