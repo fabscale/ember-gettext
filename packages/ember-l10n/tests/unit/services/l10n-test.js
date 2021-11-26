@@ -106,10 +106,27 @@ module('Unit | Service | l10n', function (hooks) {
       );
     });
 
-    test('it handles a missing locale file', async function (assert) {
+    test('it asserts for an empty locale map', async function (assert) {
       this.owner.register(
         'ember-l10n:locales',
         {},
+        {
+          instantiate: false,
+        }
+      );
+
+      assert.throws(
+        () => this.owner.lookup('service:l10n'),
+        /There are no locales defined in the locale map./
+      );
+    });
+
+    test('it handles a missing locale file', async function (assert) {
+      this.owner.register(
+        'ember-l10n:locales',
+        {
+          it: () => null,
+        },
         {
           instantiate: false,
         }
