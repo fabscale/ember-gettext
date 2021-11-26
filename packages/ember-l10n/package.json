@@ -82,8 +82,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "before": [
-      "broccoli-asset-rev"
-    ]
+    "defaultBlueprint": "ember-l10n"
   }
 }
