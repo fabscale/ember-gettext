@@ -1,9 +1,6 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-import L10nService, {
-  clearLocaleCache,
-} from '@ember-gettext/ember-l10n/services/l10n';
 import { mockLocale } from 'dummy/tests/helpers/mock-locale';
+import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 
 module('Unit | Service | l10n', function (hooks) {
   setupTest(hooks);
@@ -34,11 +31,7 @@ module('Unit | Service | l10n', function (hooks) {
     );
   });
 
-  module('locale loading', function (hooks) {
-    hooks.beforeEach(function () {
-      clearLocaleCache();
-    });
-
+  module('locale loading', function () {
     test('it works', async function (assert) {
       let l10n = this.owner.lookup('service:l10n');
 
@@ -114,11 +107,14 @@ module('Unit | Service | l10n', function (hooks) {
     });
 
     test('it handles a missing locale file', async function (assert) {
-      class ExtendedL10nService extends L10nService {
-        _staticAssetMap = {};
-      }
+      this.owner.register(
+        'ember-l10n:locales',
+        {},
+        {
+          instantiate: false,
+        }
+      );
 
-      this.owner.register('service:l10n', ExtendedL10nService);
       let l10n = this.owner.lookup('service:l10n');
 
       try {
@@ -127,7 +123,7 @@ module('Unit | Service | l10n', function (hooks) {
         assert.step('error is thrown');
         assert.strictEqual(
           error.message,
-          'Assertion Failed: ember-l10n: Cannot find locale file path for locale "de"',
+          'Assertion Failed: ember-l10n: Cannot find locale file for locale "de"',
           'error is correct'
         );
       }
@@ -138,13 +134,18 @@ module('Unit | Service | l10n', function (hooks) {
     });
 
     test('it handles non-loadable locale file', async function (assert) {
-      class ExtendedL10nService extends L10nService {
-        _fetch(path) {
-          throw new Error(`TEST error cannot load ${path}`);
+      this.owner.register(
+        'ember-l10n:locales',
+        {
+          de: () => {
+            throw new Error(`TEST error cannot load locale de`);
+          },
+        },
+        {
+          instantiate: false,
         }
-      }
+      );
 
-      this.owner.register('service:l10n', ExtendedL10nService);
       let l10n = this.owner.lookup('service:l10n');
 
       try {
@@ -153,7 +154,7 @@ module('Unit | Service | l10n', function (hooks) {
         assert.step('error is thrown');
         assert.strictEqual(
           error.message,
-          'TEST error cannot load /assets/locales/de.json',
+          'TEST error cannot load locale de',
           'error is correct'
         );
       }
