@@ -2,6 +2,20 @@
 
 
 
+
+## v0.8.1 (2021-11-26)
+
+#### :rocket: Enhancement
+* `ember-l10n`
+  * [#92](https://github.com/fabscale/ember-gettext/pull/92) Do not auto-generate empty en.json file, but assert instead ([@mydea](https://github.com/mydea))
+
+#### :bug: Bug Fix
+* `ember-l10n`
+  * [#91](https://github.com/fabscale/ember-gettext/pull/91) Ensure default blueprint runs on `ember install` ([@mydea](https://github.com/mydea))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.8.0 (2021-11-26)
 
 #### :boom: Breaking Change
