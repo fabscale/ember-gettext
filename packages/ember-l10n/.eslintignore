@@ -2,4 +2,8 @@ node_modules
 tmp
 dist
 .eslintcache
-translations
+
+# ember-try
+/.node_modules.ember-try/
+/package.json.ember-try
+/yarn.lock.ember-try
