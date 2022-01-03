@@ -27,7 +27,7 @@
     "ast-types": "^0.14.2",
     "chalk": "^4.1.2",
     "fs-extra": "^10.0.0",
-    "gettext-parser": "^4.0.2",
+    "gettext-parser": "^4.2.0",
     "glob": "^7.2.0"
   },
   "devDependencies": {
