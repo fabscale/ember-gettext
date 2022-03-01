@@ -3,6 +3,9 @@ const { traverseJson } = require('./../utils/traverse-json');
 function processJSON(json, { minimize = true } = {}) {
   let untranslatedItemCount = 0;
 
+  // Delete `obsolete` object, as we don't need that
+  delete json.obsolete;
+
   traverseJson(json, (item, namespace, id) => {
     // If the item is not translated, remove it
     if (minimize && (!item.msgstr || !item.msgstr[0])) {
