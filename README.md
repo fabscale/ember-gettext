@@ -12,7 +12,7 @@ You can use [ember-l10n](./packages/ember-l10n) to use translated messages in yo
 
 You can then use [gettext-parser](./packages/gettext-parser) to extract all the translation messages from your source code into a `messages.pot` file. This file can then be given to translators or imported into any tool that can handle gettext translations.
 
-The translation tools will then give you a translated `.po` file, e.g. `de.po` for the German translation. This file can be put into your apps `./translation` folder, and can then be converted into `.json` file suiteable for your Ember app to consume.
+The translation tools will then give you a translated `.po` file, e.g. `de.po` for the German translation. These can be converted into usable `.json` files under `/app/locales`, e.g. `/app/locales/de.json`.
 
 ## Using translations in your app
 
