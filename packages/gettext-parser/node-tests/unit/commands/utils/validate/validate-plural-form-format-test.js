@@ -16,7 +16,7 @@ describe('validatePluralFormFormat util', function () {
   });
 
   describe('only one form', function () {
-    ['ko', 'ja', 'vi'].forEach((locale) => {
+    ['ko', 'ja', 'vi', 'zh'].forEach((locale) => {
       it(`it works for ${locale}`, function () {
         validatePluralFormFormat('nplurals=1; plural=0;', locale);
       });
@@ -34,7 +34,6 @@ describe('validatePluralFormFormat util', function () {
   });
 
   describe('two forms, singular used for zero and one', function () {
-    // We ignore pt-BR for now, as that is not properly parsed
     ['pt', 'fr'].forEach((locale) => {
       it(`it works for ${locale}`, function () {
         validatePluralFormFormat('nplurals=2; plural=n>1;', locale);
