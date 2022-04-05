@@ -7540,10 +7540,10 @@ get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
-gettext-parser@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/gettext-parser/-/gettext-parser-5.0.0.tgz#300b92972d679a35f4cf34375df72be830172525"
-  integrity sha512-Kznb+OWfsVlMjgme4t/AFPbuZXtOhD5ZNRRRry6awdl8vb3w5SK2bVf6QT4+57OyBOK5C75jTLfMQDqgwuz3vQ==
+gettext-parser@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/gettext-parser/-/gettext-parser-5.1.1.tgz#ad4b499e84093da3225bfaded21b514498a97637"
+  integrity sha512-keMdDVK4ytiz+7oarKzenNO9tNOmjiTF26b2ZvQmJmei7Ll4nEoQQdrlLJbcKS3kHg2AI3/B1LdhHjHWO4A4Mg==
   dependencies:
     content-type "^1.0.4"
     encoding "^0.1.13"
