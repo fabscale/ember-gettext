@@ -3,6 +3,49 @@
 
 
 
+
+## v0.9.0 (2022-06-27)
+
+#### :rocket: Enhancement
+* `ember-l10n`
+  * [#163](https://github.com/fabscale/ember-gettext/pull/163) feat: Ensure we support setting sub-locales of defined locales ([@mydea](https://github.com/mydea))
+
+#### :memo: Documentation
+* `ember-l10n`
+  * [#164](https://github.com/fabscale/ember-gettext/pull/164) Add documentation for sub-locales & assert for usage of underlines ([@mydea](https://github.com/mydea))
+
+#### :house: Internal
+* Other
+  * [#157](https://github.com/fabscale/ember-gettext/pull/157) chore(deps-dev): bump eslint from 8.14.0 to 8.16.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#161](https://github.com/fabscale/ember-gettext/pull/161) chore(deps-dev): bump @babel/eslint-parser from 7.17.0 to 7.18.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `ember-l10n`
+  * [#158](https://github.com/fabscale/ember-gettext/pull/158) chore(deps-dev): bump @ember/test-helpers from 2.7.0 to 2.8.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#155](https://github.com/fabscale/ember-gettext/pull/155) chore(deps-dev): bump @embroider/core and @embroider/compat ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#142](https://github.com/fabscale/ember-gettext/pull/142) Update dev dependencies ([@mydea](https://github.com/mydea))
+  * [#136](https://github.com/fabscale/ember-gettext/pull/136) chore(deps): bump @glimmer/tracking from 1.0.4 to 1.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#132](https://github.com/fabscale/ember-gettext/pull/132) chore(deps): bump @glimmer/component from 1.0.4 to 1.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#105](https://github.com/fabscale/ember-gettext/pull/105) Update dev dependencies to latest ([@mydea](https://github.com/mydea))
+* `ember-l10n`, `gettext-parser`
+  * [#162](https://github.com/fabscale/ember-gettext/pull/162) chore(deps-dev): bump ember-cli from 4.3.0 to 4.4.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#154](https://github.com/fabscale/ember-gettext/pull/154) Update dev dependencies ([@mydea](https://github.com/mydea))
+  * [#127](https://github.com/fabscale/ember-gettext/pull/127) Update dev dependencies ([@mydea](https://github.com/mydea))
+  * [#114](https://github.com/fabscale/ember-gettext/pull/114) Update dev dependencies ([@mydea](https://github.com/mydea))
+  * [#102](https://github.com/fabscale/ember-gettext/pull/102) chore(deps-dev): bump ember-cli from 3.28.4 to 4.0.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#93](https://github.com/fabscale/ember-gettext/pull/93) Update dev dependencies ([@mydea](https://github.com/mydea))
+* `gettext-parser`
+  * [#160](https://github.com/fabscale/ember-gettext/pull/160) chore(deps): bump @babel/parser from 7.17.3 to 7.18.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#152](https://github.com/fabscale/ember-gettext/pull/152) chore(deps): bump glob from 7.2.0 to 8.0.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#128](https://github.com/fabscale/ember-gettext/pull/128) chore(deps): bump gettext-parser from 5.0.0 to 5.1.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#140](https://github.com/fabscale/ember-gettext/pull/140) chore: Test Chinese pluralization ([@mydea](https://github.com/mydea))
+  * [#117](https://github.com/fabscale/ember-gettext/pull/117) chore(deps): bump @babel/parser from 7.16.7 to 7.17.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#118](https://github.com/fabscale/ember-gettext/pull/118) chore(deps): bump gettext-parser from 4.2.0 to 5.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#123](https://github.com/fabscale/ember-gettext/pull/123) chore(deps): bump @glimmer/syntax from 0.83.1 to 0.84.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#95](https://github.com/fabscale/ember-gettext/pull/95) chore(deps): bump gettext-parser from 4.0.4 to 4.2.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#96](https://github.com/fabscale/ember-gettext/pull/96) chore(deps): bump @glimmer/syntax from 0.82.0 to 0.83.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.8.1 (2021-11-26)
 
 #### :rocket: Enhancement

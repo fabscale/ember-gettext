@@ -1,6 +1,6 @@
 {
   "name": "@ember-gettext/ember-l10n",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "private": false,
   "description": "Handle translations in your Ember app with gettext.",
   "keywords": [
@@ -38,7 +38,7 @@
     "ember-cli-htmlbars": "^6.0.1"
   },
   "devDependencies": {
-    "@ember-gettext/gettext-parser": "0.8.1",
+    "@ember-gettext/gettext-parser": "0.9.0",
     "@ember/optional-features": "~2.0.0",
     "@ember/test-helpers": "~2.8.1",
     "@embroider/compat": "~1.7.1",
