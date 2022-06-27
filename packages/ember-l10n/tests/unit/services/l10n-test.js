@@ -180,6 +180,28 @@ module('Unit | Service | l10n', function (hooks) {
 
       assert.verifySteps(['error is thrown']);
     });
+
+    test('it works with a sub-locale of an existing locale', async function (assert) {
+      let l10n = this.owner.lookup('service:l10n');
+
+      await l10n.setLocale('en-gb');
+
+      assert.strictEqual(l10n.locale, 'en', 'locale is correct');
+
+      assert.strictEqual(
+        l10n.t('My name is {{name}}.', { name: 'john doe' }),
+        'My name is john doe.'
+      );
+
+      await l10n.setLocale('de-AT');
+
+      assert.strictEqual(l10n.locale, 'de', 'locale is correct');
+
+      assert.strictEqual(
+        l10n.t('My name is {{name}}.', { name: 'john doe' }),
+        'Mein Name ist john doe.'
+      );
+    });
   });
 
   test('t() works', async function (assert) {

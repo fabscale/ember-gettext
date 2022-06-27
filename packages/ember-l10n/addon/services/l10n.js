@@ -1,17 +1,17 @@
-import Service from '@ember/service';
-import { tracked } from '@glimmer/tracking';
-import { getOwner } from '@ember/application';
-import { assert } from '@ember/debug';
+import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
 import {
-  replacePlaceholders,
-  sanitizeMessageId,
-  sanitizeJSON,
   getMessages,
   getPluralMessage,
+  replacePlaceholders,
+  sanitizeJSON,
+  sanitizeMessageId,
 } from '@ember-gettext/ember-l10n/utils/message-utils';
-import { detectLocale } from '@ember-gettext/ember-l10n/utils/detect-locale';
 import { PluralFactory } from '@ember-gettext/ember-l10n/utils/plural-factory';
+import { getOwner } from '@ember/application';
+import { assert } from '@ember/debug';
+import Service from '@ember/service';
 import { buildWaiter } from '@ember/test-waiters';
+import { tracked } from '@glimmer/tracking';
 
 const waiter = buildWaiter('ember-l10n:l10n');
 
@@ -126,17 +126,19 @@ and then run \`ember gettext:convert\` to convert your .po files into usable loc
   }
 
   async setLocale(locale) {
+    let actualLocale = this._getMatchingLocale(locale);
+
     assert(
       `ember-l10n: Locale ${locale} is not available to use.`,
-      this.availableLocales.includes(locale)
+      actualLocale && this.availableLocales.includes(actualLocale)
     );
 
-    await this._loadLocale(locale);
+    await this._loadLocale(actualLocale);
 
-    this.locale = locale;
+    this.locale = actualLocale;
 
     // Ensure lang attribute is set on html tag
-    window.document?.documentElement.setAttribute('lang', locale);
+    window.document?.documentElement.setAttribute('lang', actualLocale);
   }
 
   detectLocale() {
@@ -197,6 +199,23 @@ and then run \`ember gettext:convert\` to convert your .po files into usable loc
     this.pluralFactory = new PluralFactory(locale);
 
     waiter.endAsync(token);
+  }
+
+  _getMatchingLocale(locale) {
+    if (this.availableLocales.includes(locale)) {
+      return locale;
+    }
+
+    // Try to find a matching sub-locale
+    // E.g. `en-GB` should fall back to using the `en` locale if only that exists.
+    if (locale.includes('-')) {
+      let [baseLocale] = locale.split('-');
+      return this.availableLocales.find(
+        (availableLocale) => availableLocale === baseLocale
+      );
+    }
+
+    return undefined;
   }
 
   _validateLocales() {
