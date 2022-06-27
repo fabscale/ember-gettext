@@ -192,7 +192,17 @@ will be available as `{{text}}` to the named block.
 
 Locale files can be generated with [gettext-parser](./../gettext-parser).
 
-ember-l10n expects properly formatted .json files (e.g. `de.json`, `en.json`) , by default in the `./app.locales` folder of your app.
+ember-l10n expects properly formatted .json files (e.g. `de.json`, `en.json`),
+by default in the `./app.locales` folder of your app.
+
+Note that sub-locales will fall back to using the base locale, unless they are specifically defined.
+
+So if you have `availableLocales: ['en', 'de']`, you can use `l10n.setLocale('de-AT')`,
+which will load & set the `de` locale from `de.json`.
+If you had `availableLocales: ['en', 'de', 'de-AT']`,
+it would look for a dedicated `de-AT.json` translation file instead.
+
+Note that sub-locales are expected to be dasherized, not using underlines (so e.g. `de-AT`, not `de_AT`).
 
 ### Locale detection
 
