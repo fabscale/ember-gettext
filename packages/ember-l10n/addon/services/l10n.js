@@ -223,5 +223,10 @@ and then run \`ember gettext:convert\` to convert your .po files into usable loc
       `ember-l10n: Do not use the locale zh, as it is not a valid locale. Instead, use dedicated locales for traditional & simplified Chinese.`,
       !this.availableLocales.some((locale) => locale === 'zh')
     );
+
+    assert(
+      `ember-l10n: Do not use underlines to differentiate locales (e.g. en_GB). Instead, use dashes, which are ISO compliant, e.g. en-GB.`,
+      !this.availableLocales.some((locale) => locale.split('_').length > 1)
+    );
   }
 }
