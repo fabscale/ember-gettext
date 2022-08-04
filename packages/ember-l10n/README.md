@@ -11,7 +11,7 @@ In the ember-l10n workflow, you use the `t`, and `n` helpers and `l10n.t()` / `l
 - **Embroider only!!**
 - Ember.js v3.25 or above
 - Ember CLI v3.20 or above
-- Node.js v12 or above
+- Node.js v14 or above
 
 This addon is optimized for Embroider. It is probably possible to also use it without Embroider, but you'll need to adjust the generated import map yourself.
 

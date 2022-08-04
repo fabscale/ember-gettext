@@ -3,3 +3,6 @@ tmp
 dist
 .eslintcache
 packages/gettext-parser/node-tests/fixtures
+packages/gettext-parser/translations-json
+**/tmp
+**/dist
