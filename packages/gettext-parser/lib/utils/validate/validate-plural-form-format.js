@@ -1,23 +1,10 @@
+const parsePluralFormsCount = require('./../parse-plural-forms');
+
 const PLURAL_FORMS = ['zero', 'one', 'two', 'few', 'many', 'other'];
 
-const ALIAS_LOCALES = {
-  fr: 'pt',
-};
-
 function validatePluralFormFormat(pluralForm, locale) {
-  if (ALIAS_LOCALES[locale]) {
-    locale = ALIAS_LOCALES[locale];
-  }
-
   let pluralRules = new Intl.PluralRules(locale);
-  let { pluralCategories, locale: parsedLocale } =
-    pluralRules.resolvedOptions();
-
-  // We want to ensure a stable sorting
-  // As this could be in any order, but gettext will try to keep a stable ordering from few->many
-  let sortedPluralCategories = PLURAL_FORMS.filter((pluralForm) =>
-    pluralCategories.includes(pluralForm)
-  );
+  let { locale: parsedLocale } = pluralRules.resolvedOptions();
 
   if (!parsedLocale.includes(locale)) {
     throw new Error(
@@ -25,86 +12,37 @@ function validatePluralFormFormat(pluralForm, locale) {
     );
   }
 
-  let parsedPluralFactory = setupPluralFactory(pluralForm);
+  let parsedPluralForm = parsePluralForm(pluralForm);
 
-  let usedCategories = [];
+  let pluralFactory = new PluralFactory(locale, parsedPluralForm.count);
 
   // PO only accounts for positive numbers, so we do not check negative ones
   for (let i = 0; i <= 10000; i++) {
-    checkNumber(
-      i,
-      usedCategories,
-      pluralRules,
-      pluralForm,
-      parsedPluralFactory,
-      sortedPluralCategories
-    );
+    checkNumber(i, parsedPluralForm, pluralFactory);
   }
 
   // Check some manual higher numbers as well
-  checkNumber(
-    100000,
-    usedCategories,
-    pluralRules,
-    pluralForm,
-    parsedPluralFactory,
-    sortedPluralCategories
-  );
+  checkNumber(100000, parsedPluralForm, pluralFactory);
 
-  checkNumber(
-    1000000,
-    usedCategories,
-    pluralRules,
-    pluralForm,
-    parsedPluralFactory,
-    sortedPluralCategories
-  );
+  checkNumber(1000000, parsedPluralForm, pluralFactory);
 
-  checkNumber(
-    10000000,
-    usedCategories,
-    pluralRules,
-    pluralForm,
-    parsedPluralFactory,
-    sortedPluralCategories
-  );
+  checkNumber(10000000, parsedPluralForm, pluralFactory);
 }
 
-function checkNumber(
-  i,
-  usedCategories,
-  pluralRules,
-  pluralForm,
-  parsedPluralFactory,
-  sortedPluralCategories
-) {
-  let pos = parsedPluralFactory(i);
+function checkNumber(i, parsedPluralForm, pluralFactory) {
+  let pluralFormPos = parsedPluralForm.fn(i);
+  let pluralFactoryPos = pluralFactory.getMessageIndex(i);
 
-  let parsedCategory = sortedPluralCategories[pos];
-  let category = pluralRules.select(i);
-
-  if (typeof parsedCategory === 'undefined') {
+  if (pluralFormPos !== pluralFactoryPos) {
     throw new Error(
-      `plural-form header does not match Intl.PluralRules(). It is "${pluralForm}", which does not map to ${JSON.stringify(
-        sortedPluralCategories
-      )}`
+      `plural-form header does not match Intl.PluralRules() for number ${i}. Expected pos ${pluralFormPos} but was ${pluralFactoryPos}.`
     );
-  }
-
-  if (category !== parsedCategory) {
-    throw new Error(
-      `plural-form header does not match Intl.PluralRules(). Parsed plural for ${i} is ${parsedCategory}, but should be ${category}`
-    );
-  }
-
-  if (!usedCategories.includes(parsedCategory)) {
-    usedCategories.push(parsedCategory);
   }
 }
 
 // This code was previously used to parse plural forms by ember-l10n
 // Takes something like: nplurals=2; plural=(n != 1); or nplurals=1; plural=0;
-function setupPluralFactory(pluralForm) {
+function parsePluralForm(pluralForm) {
   let regex =
     /^\s*nplurals=\s*(\d+)\s*;\s*plural\s*=\s*([-+*/%?!&|=<>():;n\d\s]+);$/;
 
@@ -120,7 +58,7 @@ function setupPluralFactory(pluralForm) {
   }
 
   // eslint-disable-next-line unused-imports/no-unused-vars
-  return (n) => {
+  let fn = (n) => {
     let pluralPos = eval(pluralExpression);
 
     if (typeof pluralPos !== 'number') {
@@ -133,6 +71,48 @@ function setupPluralFactory(pluralForm) {
 
     return pluralPos;
   };
+
+  let count = parsePluralFormsCount(pluralForm);
+
+  return { fn, count };
+}
+
+// NOTE: Keep in sync with packages/ember-l10n/addon/utils/plural-factory.js
+class PluralFactory {
+  locale;
+  pluralRules;
+
+  map = new Map();
+
+  constructor(locale, pluralFormsCount) {
+    this.locale = locale;
+
+    this.pluralRules = new Intl.PluralRules(locale);
+
+    // We want to ensure a stable sorting
+    // As this could be in any order, but gettext will try to keep a stable ordering from few->many
+    let pluralForms = this.pluralRules.resolvedOptions().pluralCategories;
+
+    let sortedPluralForms = PLURAL_FORMS.filter((pluralForm) =>
+      pluralForms.includes(pluralForm)
+    );
+
+    let maxMessageId = pluralFormsCount
+      ? pluralFormsCount - 1
+      : sortedPluralForms.length - 1;
+
+    for (let i = 0; i < sortedPluralForms.length; i++) {
+      let form = sortedPluralForms[i];
+      let messageId = Math.min(i, maxMessageId);
+      this.map.set(form, messageId);
+    }
+  }
+
+  getMessageIndex(count) {
+    let pluralForm = this.pluralRules.select(count);
+
+    return this.map.has(pluralForm) ? this.map.get(pluralForm) : 0;
+  }
 }
 
 module.exports = {

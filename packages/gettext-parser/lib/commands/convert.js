@@ -5,6 +5,7 @@ const gettextParser = require('gettext-parser');
 const { processJSON } = require('./../utils/process-json');
 const { validate } = require('./../utils/validate-json');
 const generateMap = require('./../utils/generate-map');
+const parsePluralFormsCount = require('./../utils/parse-plural-forms');
 
 module.exports = {
   name: 'gettext:convert',
@@ -120,10 +121,15 @@ module.exports = {
 
     let validationErrors = validate(poFileJson, { locale });
 
+    let pluralFormsCount = parsePluralFormsCount(
+      poFileJson.headers['plural-forms']
+    );
+
     // Cleanup JSON output
     let headers = {
       locale,
       'json-creation-date': new Date().toISOString(),
+      'plural-forms-count': pluralFormsCount,
     };
     poFileJson.headers = headers;
     delete poFileJson.charset;

@@ -1,6 +1,7 @@
 {
   "headers": {
-    "locale": "en"
+    "locale": "en",
+    "plural-forms-count": 2
   },
   "translations": {
     "": {

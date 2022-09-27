@@ -8,9 +8,9 @@ describe('validatePluralFormFormat util', function () {
   describe('throws on errors', function () {
     it(`it throws on invalid format for de`, function () {
       expect(() =>
-        validatePluralFormFormat('nplurals=1; plural=0;', 'de')
+        validatePluralFormFormat('nplurals=2; plural=0;', 'de')
       ).to.throw(
-        'plural-form header does not match Intl.PluralRules(). Parsed plural for 0 is one, but should be other'
+        'plural-form header does not match Intl.PluralRules() for number 0. Expected pos 0 but was 1.'
       );
     });
   });
