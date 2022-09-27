@@ -193,10 +193,13 @@ and then run \`ember gettext:convert\` to convert your .po files into usable loc
 
     let json = sanitizeJSON(localeData);
 
-    let { translations: l10nTranslations } = json;
+    let { translations: l10nTranslations, headers } = json;
 
     this.l10nTranslations = l10nTranslations;
-    this.pluralFactory = new PluralFactory(locale);
+    this.pluralFactory = new PluralFactory(
+      locale,
+      headers['plural-forms-count']
+    );
 
     waiter.endAsync(token);
   }
