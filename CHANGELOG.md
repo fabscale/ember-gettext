@@ -4,6 +4,40 @@
 
 
 
+
+## v0.10.0 (2022-09-27)
+
+#### :rocket: Enhancement
+* `ember-l10n`, `gettext-parser`
+  * [#185](https://github.com/fabscale/ember-gettext/pull/185) Update plural forms handling ([@mydea](https://github.com/mydea))
+
+#### :house: Internal
+* `gettext-parser`
+  * [#180](https://github.com/fabscale/ember-gettext/pull/180) chore(deps): bump gettext-parser from 5.1.1 to 6.0.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* Other
+  * [#183](https://github.com/fabscale/ember-gettext/pull/183) chore(deps-dev): bump eslint from 8.21.0 to 8.23.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#184](https://github.com/fabscale/ember-gettext/pull/184) chore(deps-dev): bump release-it from 15.2.0 to 15.4.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#181](https://github.com/fabscale/ember-gettext/pull/181) chore(deps-dev): bump fabscale-eslint-config from 1.5.0 to 1.6.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#179](https://github.com/fabscale/ember-gettext/pull/179) chore(deps-dev): Update release-it to 15.x ([@mydea](https://github.com/mydea))
+  * [#177](https://github.com/fabscale/ember-gettext/pull/177) chore(deps-dev): bump eslint from 8.18.0 to 8.21.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#170](https://github.com/fabscale/ember-gettext/pull/170) chore(deps-dev): bump prettier from 2.6.1 to 2.7.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#171](https://github.com/fabscale/ember-gettext/pull/171) chore(deps-dev): bump eslint from 8.16.0 to 8.18.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#165](https://github.com/fabscale/ember-gettext/pull/165) chore(deps-dev): bump fabscale-eslint-config from 1.4.0 to 1.5.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `ember-l10n`
+  * [#182](https://github.com/fabscale/ember-gettext/pull/182) chore(deps-dev): bump ember-template-lint from 4.10.1 to 4.14.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#178](https://github.com/fabscale/ember-gettext/pull/178) chore(deps): bump ember-cli-htmlbars from 6.0.1 to 6.1.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#176](https://github.com/fabscale/ember-gettext/pull/176) chore(deps-dev): bump webpack from 5.73.0 to 5.74.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#172](https://github.com/fabscale/ember-gettext/pull/172) chore(deps-dev): bump ember-source from 4.5.0 to 4.6.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#169](https://github.com/fabscale/ember-gettext/pull/169) chore(deps-dev): bump @embroider/core and @embroider/compat ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#167](https://github.com/fabscale/ember-gettext/pull/167) chore(deps-dev): bump webpack from 5.72.0 to 5.73.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#168](https://github.com/fabscale/ember-gettext/pull/168) chore(deps-dev): bump ember-source from 4.4.1 to 4.5.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#166](https://github.com/fabscale/ember-gettext/pull/166) chore(deps-dev): bump @embroider/webpack from 1.6.0 to 1.8.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `ember-l10n`, `gettext-parser`
+  * [#174](https://github.com/fabscale/ember-gettext/pull/174) chore(deps-dev): bump ember-cli from 4.4.0 to 4.6.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+- Francesco Novy ([@mydea](https://github.com/mydea))
+
 ## v0.9.0 (2022-06-27)
 
 #### :rocket: Enhancement
