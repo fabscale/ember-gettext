@@ -17,7 +17,7 @@
     "eslint": "~8.37.0",
     "fabscale-eslint-config": "~1.6.0",
     "prettier": "~2.8.0",
-    "release-it": "~15.7.0"
+    "release-it": "~15.10.0"
   },
   "engines": {
     "node": ">= 14"
